@@ -221,10 +221,11 @@
 
   /* galeria horizontal */
   .hscroll{background:var(--ink);color:#fff;overflow:hidden}
-  .hscroll .pin{height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,3.5vh,40px);padding:calc(4.9rem + 3vh) 0 5vh}
-  .hscroll h2.display{font-size:clamp(2.4rem,min(5vw,9vh),5rem);margin:10px 0 10px}
+  .hscroll .pin{height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;gap:clamp(16px,2.5vh,28px);padding:calc(4.9rem + 1vh) 0 3vh}
+  @media(min-width:761px){.hscroll .head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}.hscroll .head .sub{margin:0 0 .6rem;text-align:right}}
+  .hscroll h2.display{font-size:clamp(2.2rem,min(4.4vw,7.5vh),4.4rem);margin:8px 0 0}
   .htrack{display:flex;gap:26px;padding:0 24px 0 max(24px,calc((100vw - 1280px)/2 + 24px));width:max-content;will-change:transform}
-  .hcard{position:relative;width:min(400px,74vw);height:clamp(260px,calc(100svh - 4.9rem - 3vh - 5vh - 16rem),520px);aspect-ratio:auto;border-radius:26px;overflow:hidden;flex:none;background:var(--ink-3)}
+  .hcard{position:relative;width:min(400px,74vw);height:clamp(300px,calc(100svh - 4.9rem - 4vh - 11.5rem),640px);width:min(440px,74vw);aspect-ratio:auto;border-radius:26px;overflow:hidden;flex:none;background:var(--ink-3)}
   .hcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%}
   .hcard figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px;background:linear-gradient(transparent,rgba(0,0,0,.88));font-family:"Barlow Condensed";font-weight:800;text-transform:uppercase;font-size:1.7rem;line-height:1}
   .hcard figcaption small{display:block;margin-top:6px;font-family:Barlow;font-weight:500;text-transform:none;font-size:.95rem;color:#d4d4d8}
@@ -453,9 +454,9 @@
 
 <section id="espaco" class="hscroll">
   <div class="pin">
-    <div class="wrap">
-      <span class="kicker">O espaço</span>
-      <h2 class="display split">Por dentro<br>da Nil.</h2>
+    <div class="wrap head">
+      <div><span class="kicker">O espaço</span>
+      <h2 class="display split">Por dentro<br>da Nil.</h2></div>
       <p class="sub">Fotos reais de quem treina aqui.</p>
       <p class="swipe" aria-hidden="true">Arraste para o lado <i></i></p>
     </div>
@@ -700,9 +701,8 @@ document.querySelectorAll('.manifesto .words').forEach((p) => {
     gsap.timeline({ scrollTrigger: { trigger: '.expand', start: 'top bottom', end: 'top 55%', scrub: .5 } })
       .to(S, { o: 0, y: '+=.6', ease: 'none' });
     gsap.timeline({ scrollTrigger: { trigger: '.finale', start: 'top bottom', end: 'center center', scrub: 1 } })
-      .fromTo(S, { x: 1.1, y: -.1, s: .3, o: 0 }, { x: .5, y: .02, s: .62, o: () => (innerWidth > 1100 ? .95 : 0), spin: '+=3', ease: 'none', immediateRender: false });
-    gsap.timeline({ scrollTrigger: { trigger: 'footer', start: 'top bottom', end: 'bottom bottom', scrub: .5 } })
-      .to(S, { o: 0, ease: 'none' });
+      .fromTo(S, { x: 1.1, y: -.1, s: .3, o: 0 }, { x: .44, y: .08, s: .54, o: () => (innerWidth > 1100 ? .95 : 0), spin: '+=3', ease: 'none', immediateRender: false });
+
   });
 
   // manifesto: palavras acendem com a rolagem
