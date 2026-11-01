@@ -3,270 +3,874 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="favicon.png" type="image/png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070708">
+<link rel="preload" as="image" href="logo-light.webp">
 <title>Academia Nil Fitness | Musculação no Belenzinho</title>
-<meta name="description" content="Academia Nil Fitness no Belenzinho, São Paulo. Musculação com estrutura boa, professores atenciosos e ambiente familiar. Av. Celso Garcia, 1621. Agende sua aula experimental.">
+<meta name="description" content="Academia Nil Fitness no Belenzinho, São Paulo. Musculação sem frescura, professores atenciosos e ambiente de família. Agende sua aula experimental grátis.">
+<link rel="icon" href="favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('rm')</script>
 <style>
+  @property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
   :root{
-    --bg:#ffffff; --bg2:#f4f4f5; --card:#ffffff; --line:#e4e4e7;
-    --text:#111111; --muted:#52525b; --accent:#e10600; --accent2:#ffb01c; --green:#25d366;
+    --red:#e10600;--red-2:#ff2a1f;--red-dark:#a80400;--ink:#070708;--ink-2:#0f0f11;--ink-3:#18181c;
+    --paper:#fff;--paper-2:#f4f4f5;--line:#e4e4e7;--line-dark:#232328;
+    --text:#0d0d0f;--muted:#55555c;--muted-dark:#9b9ba3;--wpp:#25d366;
+    --ease:cubic-bezier(.2,.8,.2,1);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
+  html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+  body{font-family:Barlow,system-ui,sans-serif;font-size:17px;line-height:1.55;color:var(--text);background:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-  h1,h2,h3{font-family:"Archivo Black",Inter,sans-serif;line-height:1.08;letter-spacing:-.5px}
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;font-weight:700;font-size:1rem;transition:transform .15s,box-shadow .15s}
-  .btn:hover{transform:translateY(-2px)}
-  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 30px -10px var(--accent)}
-  .btn-ghost{border:1.5px solid #d4d4d8;color:var(--text);background:#fff}
-  .btn-wpp{background:var(--green);color:#06210f}
-  svg.i{width:20px;height:20px;flex:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:80rem;margin:0 auto;padding:0 max(24px,env(safe-area-inset-right)) 0 max(24px,env(safe-area-inset-left))}
+  @media(max-width:420px){.wrap{padding:0 max(18px,env(safe-area-inset-right)) 0 max(18px,env(safe-area-inset-left))}}
+  @media(min-width:1921px){html{font-size:calc(100vw / 120)}}
+  .display{font-family:"Barlow Condensed",Barlow,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.5px;line-height:.9}
+  :focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:8px}
+  svg.i{width:1.375rem;height:1.375rem;flex:none}
+  .z{position:relative;z-index:6}
+  .lm{display:block;overflow:hidden;padding-bottom:.07em;white-space:nowrap}
+  .lm>span{display:inline-block}
+  .js:not(.rm) .rv{opacity:0;transform:translateY(40px)}
+
+  /* grão de filme */
+  .grain{position:fixed;inset:-50%;z-index:70;pointer-events:none;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1s steps(6) infinite}
+  @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,3%)}80%{transform:translate(3%,1%)}100%{transform:translate(0,0)}}
+
+  /* abertura */
+  .intro{position:fixed;inset:0;z-index:100;pointer-events:none}
+  .intro .half{position:absolute;left:0;right:0;height:50.5%;background:var(--ink)}
+  .intro .top{top:0}.intro .bot{bottom:0}
+  .intro .mark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,72vw)}
+  .intro .mark img{width:100%;clip-path:inset(0 100% 0 0)}
+  .intro .bar{height:3px;background:var(--red);margin-top:22px;transform:scaleX(0);transform-origin:0 50%}
+  .intro .pct{position:absolute;right:24px;bottom:22px;color:var(--muted-dark);font-family:"Barlow Condensed";font-weight:700;font-size:1.1rem;letter-spacing:2px}
+  .rm .intro,.no-gsap .intro{display:none}
+
+  /* ui fixa */
+  .progress{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(0);z-index:60}
+  .cursor{position:fixed;top:0;left:0;width:40px;height:40px;border:1.5px solid #fff;border-radius:50%;pointer-events:none;z-index:95;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease),background .3s;mix-blend-mode:difference;display:none}
+  .cursor.big{width:84px;height:84px;background:#fff}
+  @media(pointer:fine){.cursor{display:block}}
+  .chapters{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:55;display:flex;flex-direction:column;gap:14px}
+  .chapters a{display:flex;align-items:center;justify-content:flex-end;gap:10px;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:transparent;transition:color .3s}
+  .chapters a::after{content:"";width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35);transition:all .3s var(--ease);box-shadow:0 0 0 1px rgba(0,0,0,.25)}
+  .chapters a:hover{color:#fff}
+  .chapters a.on::after{background:var(--red);height:24px;border-radius:6px}
+  .chapters.on-light a::after{background:rgba(0,0,0,.25)}
+  .chapters.on-light a:hover{color:var(--text)}
+  @media(max-width:1100px){.chapters{display:none}}
+
+  /* botões */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:3.5rem;padding:0 1.9rem;border-radius:999px;font-weight:700;font-size:1rem;cursor:pointer;transition:background .25s,box-shadow .25s,color .25s;will-change:transform;position:relative;overflow:hidden;isolation:isolate}
+  .btn::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.18);transform:translateY(101%);transition:transform .45s var(--ease);z-index:-1;border-radius:inherit}
+  .btn:hover::before{transform:none}
+  .btn-red{background:var(--red);color:#fff;box-shadow:0 18px 40px -18px var(--red)}
+  .btn-wpp{background:var(--wpp);color:#052e16;box-shadow:0 18px 40px -18px var(--wpp)}
+  .btn-line{border:1.5px solid rgba(255,255,255,.3);color:#fff;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  .btn-white{background:#fff;color:var(--ink)}
+  .btn-white::before{background:rgba(0,0,0,.08)}
 
   /* topo */
-  header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
-  .logo{display:flex;align-items:center}
-  .logo img{height:46px;width:auto;display:block;mix-blend-mode:multiply}
-  .logo span{color:var(--accent)}
-  .hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:44px;align-items:center}
-  .hero-photo{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:20% center;border-radius:24px;box-shadow:0 30px 60px -25px rgba(0,0,0,.45);border:4px solid #fff;outline:2px solid var(--accent)}
-  @media(max-width:820px){.hero-grid{grid-template-columns:1fr}}
-  .insta{display:inline-flex;align-items:center;gap:8px;color:var(--muted);margin:0 10px}
-  .insta:hover{color:var(--text)}
-  nav a{color:var(--muted);font-weight:500;margin-left:26px;font-size:.95rem}
-  nav a:hover{color:var(--text)}
-  @media(max-width:760px){nav{display:none}}
+  header{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .4s,border-color .4s,transform .5s var(--ease);border-bottom:1px solid transparent}
+  header.solid{background:rgba(255,255,255,.9);-webkit-backdrop-filter:saturate(1.6) blur(14px);backdrop-filter:saturate(1.6) blur(14px);border-color:rgba(0,0,0,.08)}
+  header.hide{transform:translateY(-100%)}
+  header{padding-top:env(safe-area-inset-top)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:4.9rem;gap:16px}
+  .hright{display:flex;align-items:center;gap:10px}
+  .burger{display:none;width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);background:rgba(0,0,0,.25);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);cursor:pointer;position:relative}
+  .burger i{position:absolute;left:14px;right:14px;height:2px;background:#fff;transition:transform .4s var(--ease),top .4s var(--ease)}
+  .burger i:first-child{top:19px}.burger i:last-child{top:27px}
+  header.solid .burger{border-color:rgba(0,0,0,.15);background:#fff}
+  header.solid .burger i{background:var(--text)}
+  .menu-open .burger i:first-child{top:23px;transform:rotate(45deg)}
+  .menu-open .burger i:last-child{top:23px;transform:rotate(-45deg)}
+  .menu-open header .burger{background:#fff}.menu-open header .burger i{background:var(--text)}
+  .mmenu{position:fixed;inset:0;z-index:48;background:var(--ink);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:100px max(24px,env(safe-area-inset-left)) calc(40px + env(safe-area-inset-bottom));clip-path:circle(0% at calc(100% - 46px) 40px);transition:clip-path .7s var(--ease),visibility .7s;visibility:hidden}
+  .menu-open .mmenu{clip-path:circle(150% at calc(100% - 46px) 40px);visibility:visible}
+  .mmenu a.big{font-family:"Barlow Condensed";font-weight:800;text-transform:uppercase;font-size:clamp(2.6rem,12vw,4.5rem);line-height:1.05;display:block;opacity:0;transform:translateY(30px);transition:opacity .5s,transform .6s var(--ease)}
+  .menu-open .mmenu a.big{opacity:1;transform:none}
+  .menu-open .mmenu a.big:nth-child(2){transition-delay:.05s}.menu-open .mmenu a.big:nth-child(3){transition-delay:.1s}.menu-open .mmenu a.big:nth-child(4){transition-delay:.15s}.menu-open .mmenu a.big:nth-child(5){transition-delay:.2s}
+  .mmenu a.big:active{color:var(--red)}
+  .mmenu .foot{margin-top:40px;color:var(--muted-dark);font-size:.95rem}
+  @media(max-width:900px){.burger{display:block}header .wrap{height:68px}.hright .btn{display:none}}
+  @media(min-width:901px){.mmenu{display:none}}
+  .logo{position:relative;display:block;height:2.5rem;width:7.4rem}
+  .logo img{position:absolute;inset:0;height:100%;width:auto;transition:opacity .4s}
+  .logo .l-dark{opacity:0}
+  header.solid .logo .l-dark{opacity:1}
+  header.solid .logo .l-light{opacity:0}
+  nav{display:flex;gap:30px}
+  nav a{font-weight:600;font-size:.96rem;color:rgba(255,255,255,.8);transition:color .3s;position:relative}
+  nav a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--red);transform:scaleX(0);transition:transform .35s var(--ease)}
+  nav a:hover::after{transform:none}
+  nav a:hover{color:#fff}
+  header.solid nav a{color:var(--muted)}
+  header.solid nav a:hover{color:var(--text)}
+  @media(max-width:900px){nav{display:none}}
+
+  /* palco 3D fixo */
+  #stage{position:fixed;inset:0;width:100vw;height:100vh;z-index:5;pointer-events:none}
+  .rm #stage,.no-gsap #stage{display:none}
 
   /* hero */
-  .hero{position:relative;overflow:hidden;padding:90px 0 80px}
-  .hero::before{content:"";position:absolute;inset:-30% -10% auto auto;width:720px;height:720px;background:radial-gradient(circle,rgba(225,6,0,.10),transparent 65%);pointer-events:none}
-  .hero::after{content:none}
-  .badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);padding:7px 14px;border-radius:999px;font-size:.9rem;color:var(--muted)}
-  .stars{color:var(--accent2);letter-spacing:2px}
-  .hero h1{font-size:clamp(2.4rem,6vw,4.4rem);margin:22px 0 18px;max-width:780px}
-  .hero h1 em{font-style:normal;color:var(--accent)}
-  .hero p.lead{font-size:1.15rem;color:var(--muted);max-width:560px;margin-bottom:32px}
-  .cta{display:flex;flex-wrap:wrap;gap:14px}
-  .facts{display:flex;flex-wrap:wrap;gap:28px;margin-top:46px;color:var(--muted);font-size:.95rem}
-  .facts b{display:block;color:var(--text);font-size:1.5rem;font-family:"Archivo Black"}
+  .hero{position:relative;height:100vh;height:100svh;min-height:600px;overflow:hidden;color:#fff;background:var(--ink)}
+  .hero .bg{position:absolute;inset:-10% -6%;background:url(hero.webp) 30% 70%/cover no-repeat;will-change:transform;filter:saturate(.9)}
+  .hero .shade{position:absolute;inset:0;background:radial-gradient(ellipse at 75% 45%,rgba(225,6,0,.18),transparent 55%),linear-gradient(180deg,rgba(7,7,8,.55) 0%,rgba(7,7,8,.55) 45%,rgba(7,7,8,.98) 100%),linear-gradient(90deg,rgba(7,7,8,.92) 0%,rgba(7,7,8,.25) 70%)}
+  .hero .content{position:absolute;left:0;right:0;bottom:0;padding-bottom:9vh}
+  .chip{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);padding:9px 16px;border-radius:999px;font-weight:600;font-size:.92rem}
+  .chip .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.7);animation:live 2s infinite}
+  @keyframes live{70%{box-shadow:0 0 0 10px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+  .stars{color:#fbbf24;letter-spacing:1px}
+  @media(max-width:360px){.chip{font-size:.8rem;padding:7px 12px;gap:7px}.stars{letter-spacing:0}}
+  .hero h1{font-size:clamp(2.3rem,calc((100vw - 40px) / 6.7),5rem);margin:18px 0 16px}
+  @media(min-width:901px){.hero h1{font-size:clamp(3.4rem,6.8vw,8.4rem);margin:22px 0 20px}}
+  @media(max-width:760px){.hero .bg{background-image:url(hero-m.webp)}.hero .content{padding-bottom:calc(88px + env(safe-area-inset-bottom))}.lead{margin-bottom:24px}}
+  @media(max-height:520px) and (orientation:landscape){.hero{min-height:520px}.hero .content{padding-bottom:24px}.hero h1{font-size:clamp(2rem,9vh,3.6rem)}.lead{display:none}}
+  .hero h1 em{font-style:italic;color:var(--red);text-shadow:0 0 60px rgba(225,6,0,.45)}
+  .lead{font-size:clamp(1.05rem,1.5vw,1.22rem);color:#d4d4d8;max-width:520px;margin-bottom:32px}
+  .cta{display:flex;flex-wrap:wrap;gap:12px}
+  @media(min-width:901px){.hero .content .wrap>*{max-width:58%}}
+  .scroll-hint{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:#a1a1aa}
+  .scroll-hint i{width:22px;height:36px;border:1.5px solid rgba(255,255,255,.4);border-radius:12px;position:relative}
+  .scroll-hint i::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;border-radius:2px;background:#fff;transform:translateX(-50%);animation:wheel 1.6s infinite}
+  @keyframes wheel{to{transform:translate(-50%,12px);opacity:0}}
+  @media(max-width:640px){.scroll-hint{display:none}}
 
-  section{padding:80px 0}
-  .tag{color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:2px;font-size:.8rem}
-  section h2{font-size:clamp(1.8rem,4vw,2.7rem);margin:10px 0 14px}
-  .sub{color:var(--muted);max-width:600px;margin-bottom:40px}
+  /* manifesto */
+  .manifesto{position:relative;background:var(--ink);color:#fff;min-height:100vh;min-height:100svh;display:flex;align-items:center}
+  .manifesto .wrap{width:100%}
+  .manifesto p{font-family:"Barlow Condensed";font-weight:800;text-transform:uppercase;font-size:clamp(2.1rem,9vw,5.6rem);line-height:.98;max-width:1100px}
+  .manifesto p .w{opacity:.14;display:inline-block;margin-right:.22em}
+  .manifesto p .w.r{color:var(--red)}
+  .manifesto .kicker{margin-bottom:28px}
 
-  /* diferenciais */
-  .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
-  .card .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:rgba(225,6,0,.12);color:var(--accent);margin-bottom:16px}
-  .card h3{font-family:Inter;font-weight:700;font-size:1.15rem;letter-spacing:0;margin-bottom:6px}
-  .card p{color:var(--muted);font-size:.95rem}
+  .kicker{display:inline-flex;align-items:center;gap:10px;color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:2.5px;font-size:.8rem}
+  .kicker::before{content:"";width:30px;height:2px;background:var(--red)}
+  section{position:relative}
+  .pad{padding:130px 0}
+  h2.display{font-size:clamp(2.2rem,8.6vw,5.4rem);margin:16px 0 18px}
+  @media(max-width:600px){h2.display .lm{white-space:normal}.pad{padding:88px 0}}
+  .sub{color:var(--muted);max-width:620px;font-size:1.1rem}
+  .light{background:var(--paper);color:var(--text)}
+  .dark{background:var(--ink);color:#fff}
+  .dark .sub{color:var(--muted-dark)}
+
+  /* imagem que expande */
+  .expand{height:100vh;position:relative;overflow:hidden;background:var(--ink);color:#fff}
+  .expand .media{position:absolute;left:50%;top:50%;width:34vw;height:46vh;transform:translate(-50%,-50%);border-radius:28px;overflow:hidden;will-change:width,height,border-radius}
+  .expand .media img{width:100%;height:100%;object-fit:cover;transform:scale(1.25);will-change:transform}
+  .expand .media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.65))}
+  .expand .words{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:2vw;z-index:3;pointer-events:none}
+  .expand .words span{font-family:"Barlow Condensed";font-weight:800;font-size:clamp(3.6rem,11vw,12rem);text-transform:uppercase;line-height:1;white-space:nowrap}
+  .expand .words span:last-child{color:var(--red);font-style:italic}
+  .expand .caption{position:absolute;left:0;right:0;bottom:8vh;text-align:center;z-index:3;opacity:0}
+  .expand .caption p{max-width:560px;margin:0 auto;color:#e4e4e7;font-size:1.15rem}
+  .expand{height:100svh}
+  @media(max-width:760px){.expand .media{width:72vw;height:44svh}.expand .words{flex-direction:column;gap:0}.expand .words span{font-size:clamp(3rem,17vw,6rem)}.expand .caption{bottom:calc(90px + env(safe-area-inset-bottom));padding:0 24px}}
+
+  /* contadores + bento */
+  .counters{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:64px}
+  .counter{border-top:2px solid var(--text);padding-top:20px}
+  .counter b{font-family:"Barlow Condensed";font-weight:800;font-size:clamp(3.2rem,6vw,5.6rem);line-height:1;display:block}
+  .counter b sup{font-size:.42em;color:var(--red);vertical-align:.9em}
+  .counter span{color:var(--muted)}
+  @media(max-width:760px){.counters{grid-template-columns:1fr 1fr}}
+  .bento{display:grid;gap:18px;margin-top:64px;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(210px,auto)}
+  .tile-w{perspective:1200px}
+  .tile{position:relative;height:100%;border-radius:24px;overflow:hidden;background:var(--paper-2);border:1px solid var(--line);padding:28px;display:flex;flex-direction:column;justify-content:flex-end;transform-style:preserve-3d;will-change:transform;isolation:isolate}
+  .tile::after{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.35),transparent 40%);opacity:0;transition:opacity .35s;pointer-events:none;z-index:4}
+  .tile:hover::after{opacity:1}
+  .tile h3{font-family:"Barlow Condensed";font-weight:800;text-transform:uppercase;font-size:1.85rem;line-height:1;margin-bottom:8px;transform:translateZ(40px)}
+  .tile p{color:var(--muted);font-size:.98rem;transform:translateZ(24px)}
+  .tile .ic{position:absolute;top:24px;left:24px;width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:#fff;border:1px solid var(--line);color:var(--red);transform:translateZ(50px)}
+  .tile.photo{padding:0;border:0;background:var(--ink)}
+  .tile.photo img{position:absolute;inset:-12% 0;width:100%;height:124%;object-fit:cover;will-change:transform;z-index:-1}
+  .tile.photo .cap{padding:28px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.85));transform-style:preserve-3d}
+  .tile.photo .cap p{color:#e4e4e7}
+  .tile.red{background:var(--red);border-color:var(--red);color:#fff}
+  .tile.red p{color:#ffe1e1}
+  .tile.red .big{font-family:"Barlow Condensed";font-weight:800;font-size:6.4rem;line-height:.85;transform:translateZ(60px)}
+  .tile.ink{background:var(--ink);border-color:var(--ink);color:#fff}
+  .tile.ink p{color:var(--muted-dark)}
+  .tile.ink .ic{background:var(--ink-3);border-color:var(--line-dark)}
+  .span-2{grid-column:span 2}.row-2{grid-row:span 2}
+  @media(max-width:960px){.bento{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.bento{grid-template-columns:1fr}.span-2{grid-column:auto}.row-2{grid-row:auto}.tile.photo{min-height:340px}}
+
+  /* galeria horizontal */
+  .hscroll{background:var(--ink);color:#fff;overflow:hidden}
+  .hscroll .pin{height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;gap:44px}
+  .htrack{display:flex;gap:26px;padding:0 24px 0 max(24px,calc((100vw - 1280px)/2 + 24px));width:max-content;will-change:transform}
+  .hcard{position:relative;width:min(400px,74vw);height:min(520px,58vh);border-radius:26px;overflow:hidden;flex:none;background:var(--ink-3)}
+  .hcard img{position:absolute;top:0;left:-15%;width:130%;height:100%;object-fit:cover;will-change:transform}
+  .hcard figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px;background:linear-gradient(transparent,rgba(0,0,0,.88));font-family:"Barlow Condensed";font-weight:800;text-transform:uppercase;font-size:1.7rem;line-height:1}
+  .hcard figcaption small{display:block;margin-top:6px;font-family:Barlow;font-weight:500;text-transform:none;font-size:.95rem;color:#d4d4d8}
+  .hcard .n{position:absolute;top:20px;left:22px;font-family:"Barlow Condensed";font-weight:700;letter-spacing:2px;font-size:.9rem;color:#fff;background:rgba(0,0,0,.4);padding:4px 10px;border-radius:999px;backdrop-filter:blur(6px)}
+  .hcard.quote>img{filter:grayscale(1) contrast(1.15) brightness(.75)}
+  .hcard.quote::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(200deg,rgba(225,6,0,.15) 0%,rgba(225,6,0,.55) 55%,rgba(120,2,0,.95) 100%);mix-blend-mode:multiply}
+  .hcard.quote .q{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;padding:28px}
+  .hcard.quote .q img{position:static;width:110px;height:auto;object-fit:contain}
+  .hcard.quote .q b{display:block;font-family:"Barlow Condensed";font-weight:800;font-size:6rem;line-height:.6;color:#fff;margin-bottom:10px}
+  .hcard.quote .q p{font-family:"Barlow Condensed";font-weight:800;text-transform:uppercase;font-size:clamp(2.2rem,4vw,3rem);line-height:.95;color:#fff}
+  .hcard.quote .q small{display:block;margin-top:10px;color:#ffd5d2;font-size:.95rem}
+  .swipe{display:none;align-items:center;gap:8px;color:var(--muted-dark);font-size:.9rem;margin-top:6px}
+  .swipe i{display:inline-block;width:34px;height:2px;background:var(--red);animation:nudge 1.6s infinite}
+  @keyframes nudge{50%{transform:translateX(8px)}}
+  @media(max-width:760px){
+    .hscroll .pin{height:auto;padding:110px 0}
+    .htrack{overflow-x:auto;scroll-snap-type:x mandatory;width:100%;padding-bottom:12px}
+    .hcard{scroll-snap-align:start;width:78vw;height:min(480px,62svh)}
+    .htrack{scroll-padding-left:18px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .htrack::-webkit-scrollbar{display:none}
+    .swipe{display:flex}
+  }
 
   /* planos */
-  .alt{background:var(--bg2)}
-  .plans{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-  .plan{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px;display:flex;flex-direction:column}
-  .plan.hot{border-color:var(--accent);border-width:2px;box-shadow:0 20px 50px -30px var(--accent);position:relative}
-  .plan.hot::before{content:"Mais escolhido";position:absolute;top:-12px;left:30px;background:var(--accent);color:#fff;font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:999px}
-  .plan h3{font-family:Inter;font-weight:700;font-size:1.1rem;letter-spacing:0}
-  .price{font-family:"Archivo Black";font-size:2.2rem;margin:12px 0 4px}
-  .price small{font-family:Inter;font-size:.9rem;color:var(--muted);font-weight:500}
-  .plan ul{list-style:none;margin:16px 0 26px;color:var(--muted);font-size:.95rem}
-  .plan li{padding:6px 0;border-bottom:1px dashed var(--line)}
-  .plan li::before{content:"✓ ";color:var(--accent);font-weight:700}
-  .plan .btn{margin-top:auto;justify-content:center}
-  .note{color:var(--muted);font-size:.85rem;margin-top:18px}
+  .plans{display:grid;gap:22px;margin-top:64px;grid-template-columns:repeat(3,1fr);align-items:stretch}
+  @media(max-width:900px){.plans{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}.plan-w:has(.hot){order:-1}.plan{padding:30px}.plan .price{font-size:4.2rem}}
+  @media(min-width:901px) and (max-width:1100px){.plans{grid-template-columns:1fr 1fr}.plan-w:has(.hot){grid-column:span 2;order:-1}}
+  .plan-w{perspective:1400px;display:flex}
+  .plan{position:relative;flex:1;background:var(--ink-2);border:1px solid var(--line-dark);border-radius:28px;padding:38px;display:flex;flex-direction:column;transform-style:preserve-3d;will-change:transform;isolation:isolate}
+  .plan::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:radial-gradient(360px circle at var(--mx,50%) var(--my,0%),rgba(255,60,50,.9),transparent 45%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s;pointer-events:none}
+  .plan::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(500px circle at var(--mx,50%) var(--my,0%),rgba(225,6,0,.12),transparent 45%);opacity:0;transition:opacity .35s;pointer-events:none;z-index:-1}
+  .plan:hover::before,.plan:hover::after{opacity:1}
+  .plan .name{font-weight:700;letter-spacing:2.5px;text-transform:uppercase;font-size:.82rem;color:var(--muted-dark)}
+  .plan .price{font-family:"Barlow Condensed";font-weight:800;font-size:5rem;line-height:1;margin:20px 0 6px;transform:translateZ(50px);display:flex;align-items:baseline;gap:6px}
+  .plan .price .cur{font-size:.42em;color:var(--muted-dark)}
+  .plan .price small{font-family:Barlow;font-weight:500;font-size:1rem;color:var(--muted-dark)}
+  .plan .note{color:var(--muted-dark);font-size:.93rem}
+  .plan ul{list-style:none;margin:28px 0 32px;display:grid;gap:13px}
+  .plan li{display:flex;gap:10px;align-items:flex-start;color:#e4e4e7}
+  .plan li svg{color:var(--red);margin-top:2px}
+  .plan .btn{margin-top:auto;transform:translateZ(30px)}
+  .plan.hot{background:linear-gradient(165deg,#2a0503 0%,var(--ink-2) 55%);border-color:transparent}
+  .plan.hot .spin{position:absolute;inset:-2px;border-radius:30px;padding:2px;background:conic-gradient(from var(--ang),var(--red),#ff8a80,var(--red-dark),transparent 40%,var(--red));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 4s linear infinite;pointer-events:none}
+  @keyframes spin{to{--ang:360deg}}
+  .plan.hot .tag{position:absolute;top:-15px;left:38px;background:var(--red);color:#fff;font-weight:700;font-size:.8rem;padding:7px 15px;border-radius:999px;transform:translateZ(60px);box-shadow:0 10px 30px -10px var(--red)}
 
-  /* avaliacoes */
-  .reviews{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-  .review{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px}
-  .review p{font-size:1.05rem;margin:10px 0 14px}
-  .review span{color:var(--muted);font-size:.9rem}
+  /* avaliações em faixa dupla */
+  .reviews{margin-top:64px;display:grid;gap:18px;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+  .rrow{display:flex;gap:18px;width:max-content}
+  .review{width:min(420px,80vw);border:1px solid var(--line);border-radius:22px;padding:28px;background:#fff;display:flex;flex-direction:column;gap:16px;flex:none}
+  .review blockquote{font-size:1.15rem;font-weight:500;line-height:1.45}
+  .who{display:flex;align-items:center;gap:12px}
+  .avatar{width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:700}
+  .who span{color:var(--muted);font-size:.88rem}
+  .score{display:flex;align-items:center;gap:22px;margin-top:24px;flex-wrap:wrap}
+  .score b{font-family:"Barlow Condensed";font-weight:800;font-size:4.4rem;line-height:1}
 
   /* local */
-  .local{display:grid;gap:24px;grid-template-columns:1fr 1.2fr;align-items:stretch}
-  @media(max-width:820px){.local{grid-template-columns:1fr}}
-  .info{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px}
-  .info .row{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .local{display:grid;grid-template-columns:1fr 1.3fr;gap:22px;margin-top:64px}
+  @media(max-width:900px){.local{grid-template-columns:1fr}}
+  .info{background:var(--paper-2);border:1px solid var(--line);border-radius:28px;padding:36px}
+  .info .row{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
   .info .row:last-of-type{border:0}
-  .info .row svg{color:var(--accent);margin-top:3px}
+  .info .row svg{color:var(--red);margin-top:2px}
   .info b{display:block}
-  .info span{color:var(--muted);font-size:.95rem}
-  .map{border-radius:20px;overflow:hidden;border:1px solid var(--line);min-height:340px}
-  .map iframe{width:100%;height:100%;min-height:340px;border:0}
+  .info span{color:var(--muted)}
+  .info .btn{margin-top:16px}
+  .map{border-radius:28px;overflow:hidden;border:1px solid var(--line);min-height:420px}
+  .map iframe{width:100%;height:100%;min-height:420px;border:0;filter:grayscale(.25)}
+  @media(max-width:600px){.map,.map iframe{min-height:320px}.info{padding:26px}}
 
-  /* cta final */
-  .final{text-align:center;background:linear-gradient(135deg,#b80500,#e10600);color:#fff;border-radius:28px;padding:60px 24px;margin:0 20px}
-  .final h2{color:#fff}
-  .final p{opacity:.9;margin:0 auto 28px;max-width:520px}
-  .final .btn{background:#fff;color:#111}
+  /* final */
+  .finale{background:var(--ink);color:#fff;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;text-align:center}
+  .finale .glow{position:absolute;left:50%;top:50%;width:70vmax;height:70vmax;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(225,6,0,.45),transparent 60%);filter:blur(20px);pointer-events:none}
+  .finale .wrap{width:100%}
+  .finale h2{font-size:clamp(3rem,8.5vw,8.6rem);margin:16px 0 22px}
+  .finale h2 em{font-style:italic;color:var(--red)}
+  .finale p{color:#d4d4d8;max-width:520px;margin:0 auto 34px;font-size:1.15rem}
+  .finale .cta{justify-content:center}
 
-  footer{padding:40px 0;margin-top:20px;background:#111;color:#a1a1aa;font-size:.9rem;text-align:center}
-  footer .insta:hover{color:#fff}
-  .foot-logo{height:40px;margin:0 auto 18px;display:block;background:#fff;border-radius:10px;padding:6px 10px}
+  footer{background:var(--ink);color:var(--muted-dark);padding:56px 0 120px;border-top:1px solid var(--line-dark)}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center}
+  footer img{height:2.5rem;width:auto}
+  .socials{display:flex;gap:20px;flex-wrap:wrap}
+  .socials a:hover{color:#fff}
 
-  .float{position:fixed;right:20px;bottom:20px;z-index:30;width:60px;height:60px;border-radius:50%;background:var(--green);display:grid;place-items:center;box-shadow:0 10px 30px -6px rgba(37,211,102,.7)}
-  .float svg{width:32px;height:32px;color:#fff}
-
-  .preview{background:var(--accent2);color:#1a1200;text-align:center;font-size:.85rem;font-weight:600;padding:8px 12px}
+  .float{position:fixed;right:max(22px,env(safe-area-inset-right));bottom:max(22px,env(safe-area-inset-bottom));z-index:55;width:3.9rem;height:3.9rem;border-radius:50%;background:var(--wpp);display:grid;place-items:center;color:#fff;box-shadow:0 12px 30px -8px rgba(37,211,102,.7)}
+  .float svg{width:2rem;height:2rem}
+  .float::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wpp);animation:ping 2.4s infinite}
+  @keyframes ping{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.8);opacity:0}}
+  .mbar{display:none}
+  @media(max-width:640px){
+    .float{display:none}
+    .mbar{display:flex;position:fixed;left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));z-index:55;gap:10px;transition:transform .4s var(--ease)}
+    .menu-open .mbar{transform:translateY(160%)}
+    footer{padding-bottom:calc(110px + env(safe-area-inset-bottom))}
+    .mbar .btn{flex:1;min-height:54px}
+    .pad{padding:96px 0}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.manifesto p .w{opacity:1}}
 </style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body>
 
-<div class="preview" style="background:#111;color:#fff">Modelo de demonstração criado para a Academia Nil Fitness</div>
+<div class="intro" aria-hidden="true">
+  <div class="half top"></div><div class="half bot"></div>
+  <div class="mark"><img src="logo-light.webp" alt=""><div class="bar"></div></div>
+  <div class="pct">0%</div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"></div>
+<canvas id="stage" aria-hidden="true"></canvas>
 
-<header>
+<nav class="chapters" aria-label="Capítulos">
+  <a href="#inicio">Início</a><a href="#manifesto">Manifesto</a><a href="#academia">A academia</a><a href="#espaco">O espaço</a><a href="#planos">Planos</a><a href="#avaliacoes">Avaliações</a><a href="#local">Local</a>
+</nav>
+
+<header id="top">
   <div class="wrap">
-    <a href="#" class="logo"><img src="logo-nome.webp" alt="Nil Fitness" width="132" height="46"></a>
-    <nav>
-      <a href="#diferenciais">A academia</a>
-      <a href="#planos">Planos</a>
-      <a href="#avaliacoes">Avaliações</a>
-      <a href="#local">Como chegar</a>
+    <a href="#inicio" class="logo" aria-label="Nil Fitness, início"><img class="l-light" src="logo-light.webp" alt="Nil Fitness"><img class="l-dark" src="logo-dark.webp" alt=""></a>
+    <nav aria-label="Seções">
+      <a href="#academia">A academia</a><a href="#espaco">O espaço</a><a href="#planos">Planos</a><a href="#local">Como chegar</a>
     </nav>
-    <a class="btn btn-primary" style="padding:10px 18px;font-size:.9rem" href="https://wa.me/551126929824?text=Ol%C3%A1!%20Quero%20agendar%20uma%20aula%20experimental%20na%20Nil%20Fitness." target="_blank" rel="noopener">Aula grátis</a>
+    <div class="hright">
+      <a class="btn btn-red magnet" style="min-height:2.9rem;padding:0 1.4rem;font-size:.92rem" href="https://wa.me/551126929824?text=Ol%C3%A1!%20Quero%20agendar%20uma%20aula%20experimental%20na%20Nil%20Fitness." target="_blank" rel="noopener">Aula grátis</a>
+      <button class="burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mmenu"><i></i><i></i></button>
+    </div>
   </div>
 </header>
+<nav class="mmenu" id="mmenu" aria-label="Menu">
+  <a class="big" href="#academia">A academia</a><a class="big" href="#espaco">O espaço</a><a class="big" href="#planos">Planos</a><a class="big" href="#avaliacoes">Avaliações</a><a class="big" href="#local">Como chegar</a>
+  <p class="foot">Av. Celso Garcia, 1621 · Belenzinho<br>(11) 2692-9824</p>
+</nav>
 
-<section class="hero">
-  <div class="wrap hero-grid">
-   <div>
-    <span class="badge"><span class="stars">★★★★★</span> 4,6 no Google · 28 avaliações</span>
-    <h1>Musculação <em>sem frescura</em> no coração do Belenzinho.</h1>
-    <p class="lead">Estrutura completa, professores que acompanham o seu treino de perto e um ambiente de família. Venha conhecer com uma aula experimental grátis.</p>
-    <div class="cta">
-      <a class="btn btn-wpp" href="https://wa.me/551126929824?text=Ol%C3%A1!%20Quero%20agendar%20uma%20aula%20experimental%20na%20Nil%20Fitness." target="_blank" rel="noopener">
-        <svg class="i" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.7-1.1-4.5-3.9-4.6-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg>
-        Agendar aula grátis
-      </a>
-      <a class="btn btn-ghost" href="#planos">Ver planos</a>
-    </div>
-    <div class="facts">
-      <div><b>4,6★</b>nota no Google</div>
-      <div><b>Até 21h</b>aberto todos os dias úteis</div>
-      <div><b>Belenzinho</b>Av. Celso Garcia, 1621</div>
-    </div>
-   </div>
-   <img class="hero-photo" src="foto-treino.webp" alt="Alunos treinando na Academia Nil Fitness" width="900" height="898">
-  </div>
-</section>
-
-<section id="diferenciais" class="alt">
-  <div class="wrap">
-    <span class="tag">Por que a Nil</span>
-    <h2>Aqui você não é só mais um número.</h2>
-    <p class="sub">O que os nossos alunos mais falam da Nil Fitness, nas palavras deles.</p>
-    <div class="grid">
-      <div class="card">
-        <div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/></svg></div>
-        <h3>Estrutura boa</h3>
-        <p>Equipamentos para treinar musculação de verdade, do iniciante ao avançado.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg></div>
-        <h3>Professores atenciosos</h3>
-        <p>Gente que corrige a postura, monta o treino e acompanha a sua evolução.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5V21H3z"/><path d="M9 21v-6h6v6"/></svg></div>
-        <h3>Vibe de família</h3>
-        <p>Ambiente acolhedor, sem frescura, onde todo mundo se conhece pelo nome.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M7 8h10"/></svg></div>
-        <h3>Suplementos com preço bom</h3>
-        <p>Compre o seu suplemento ali mesmo, sem pagar caro.</p>
+<main>
+<section class="hero" id="inicio">
+  <div class="bg" aria-hidden="true"></div>
+  <div class="shade" aria-hidden="true"></div>
+  <div class="content z">
+    <div class="wrap">
+      <span class="chip h-in"><span class="dot"></span><span class="stars" aria-hidden="true">★★★★★</span> 4,6 no Google · 28 avaliações</span>
+      <h1 class="display">
+        <span class="lm"><span>Musculação</span></span>
+        <span class="lm"><span><em>sem frescura</em></span></span>
+        <span class="lm"><span>no Belenzinho</span></span>
+      </h1>
+      <p class="lead h-in">Estrutura boa, professores que acompanham o seu treino de perto e um ambiente de família. A primeira aula é por nossa conta.</p>
+      <div class="cta h-in">
+        <a class="btn btn-wpp magnet" href="https://wa.me/551126929824?text=Ol%C3%A1!%20Quero%20agendar%20uma%20aula%20experimental%20na%20Nil%20Fitness." target="_blank" rel="noopener">
+          <svg class="i" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.7-1.1-4.5-3.9-4.6-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg>
+          Agendar aula grátis
+        </a>
+        <a class="btn btn-line magnet" href="#planos">Ver planos</a>
       </div>
     </div>
   </div>
+  <div class="scroll-hint z" aria-hidden="true"><i></i>Role</div>
 </section>
 
-<section id="planos">
+<section class="manifesto" id="manifesto">
+  <div class="wrap z">
+    <span class="kicker">Manifesto</span>
+    <p class="words">Aqui você não é só mais um número. Aqui tem *família, tem professor do *seu lado e treino de *verdade. Sem frescura. Só *resultado.</p>
+  </div>
+</section>
+
+<section class="expand" id="espaco-intro" aria-label="Conheça o espaço">
+  <div class="media"><img src="salao.webp" srcset="salao-m.webp 600w, salao.webp 900w" sizes="100vw" alt="Salão de musculação da Nil Fitness"></div>
+  <div class="words" aria-hidden="true"><span>Conheça</span><span>a Nil</span></div>
+  <div class="caption"><p>Equipamentos para cada grupo muscular, iluminação de verdade e espaço para treinar sem fila.</p></div>
+</section>
+
+<section id="academia" class="light pad">
   <div class="wrap">
-    <span class="tag">Planos</span>
-    <h2>Escolha o plano e comece hoje.</h2>
-    <p class="sub">Sem taxa escondida. Tire suas dúvidas direto com a gente pelo WhatsApp.</p>
+    <span class="kicker rv">Por que a Nil</span>
+    <h2 class="display split">Feita para quem<br>leva o treino a sério.</h2>
+    <p class="sub rv">O que os nossos alunos mais falam da Nil Fitness, nas palavras deles.</p>
+
+    <div class="counters">
+      <div class="counter rv"><b><span data-count="4.6" data-dec="1">4,6</span><sup>★</sup></b><span>nota no Google</span></div>
+      <div class="counter rv"><b><span data-count="28">28</span></b><span>avaliações reais</span></div>
+      <div class="counter rv"><b><span data-count="21">21</span><sup>H</sup></b><span>aberto até</span></div>
+      <div class="counter rv"><b><sup>R$</sup><span data-count="60">60</span></b><span>a partir de /mês</span></div>
+    </div>
+
+    <div class="bento">
+      <div class="tile-w span-2 row-2 rv"><div class="tile photo tilt">
+        <img src="treino-2.webp" alt="Aluno treinando no aparelho" loading="lazy" style="object-position:center 40%">
+        <div class="cap"><h3>Estrutura boa</h3><p>Aparelhos e pesos livres para treinar do iniciante ao avançado.</p></div>
+      </div></div>
+      <div class="tile-w rv"><div class="tile red tilt"><div class="big">4,6</div><p>de 5 no Google, com 28 avaliações de quem treina aqui.</p></div></div>
+      <div class="tile-w rv"><div class="tile tilt">
+        <div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg></div>
+        <h3>Professores atenciosos</h3><p>Corrigem a postura e acompanham sua evolução.</p>
+      </div></div>
+      <div class="tile-w rv"><div class="tile ink tilt">
+        <div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V21H3z"/><path d="M9 21v-6h6v6"/></svg></div>
+        <h3>Vibe de família</h3><p>Sem frescura. Aqui todo mundo se conhece pelo nome.</p>
+      </div></div>
+      <div class="tile-w rv"><div class="tile photo tilt">
+        <img src="suplementos.webp" alt="Loja de suplementos dentro da academia" loading="lazy">
+        <div class="cap"><h3>Suplementos</h3><p>Com preço bom, ali mesmo.</p></div>
+      </div></div>
+      <div class="tile-w span-2 rv"><div class="tile photo tilt" style="min-height:300px">
+        <img src="treino-1.webp" alt="Aluno treinando bíceps" loading="lazy" style="object-position:center 35%">
+        <div class="cap"><h3>Treino de verdade</h3><p>Do primeiro dia ao seu melhor shape.</p></div>
+      </div></div>
+      <div class="tile-w span-2 rv"><div class="tile tilt">
+        <div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Aberto até 21h</h3><p>Dá para treinar antes ou depois do trabalho, com calma.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section id="espaco" class="hscroll">
+  <div class="pin">
+    <div class="wrap">
+      <span class="kicker">O espaço</span>
+      <h2 class="display split">Por dentro<br>da Nil.</h2>
+      <p class="sub">Fotos reais de quem treina aqui.</p>
+      <p class="swipe" aria-hidden="true">Arraste para o lado <i></i></p>
+    </div>
+    <div class="htrack">
+      <figure class="hcard"><span class="n">01</span><img src="hero.webp" alt="Esteiras e aparelhos" loading="lazy"><figcaption>Cardio<small>Esteiras de frente para o salão</small></figcaption></figure>
+      <figure class="hcard"><span class="n">02</span><img src="g-1.webp" alt="Aluno no salão" loading="lazy"><figcaption>Pesos livres<small>Do básico ao pesado</small></figcaption></figure>
+      <figure class="hcard quote"><img src="treino-1.webp" alt="" loading="lazy" style="object-position:center 30%"><div class="q"><img src="logo-light.webp" alt="Nil Fitness"><div><b>“</b><p>Treino sério.<br>Clima leve.</p><small>O jeito Nil de treinar</small></div></div></figure>
+      <figure class="hcard"><span class="n">03</span><img src="g-2.webp" alt="Alunos treinando juntos" loading="lazy"><figcaption>Treino em dupla<small>Aqui se treina junto</small></figcaption></figure>
+      <figure class="hcard"><span class="n">04</span><img src="g-3.webp" alt="Professor da Nil Fitness" loading="lazy"><figcaption>Professores<small>Sempre por perto</small></figcaption></figure>
+      <figure class="hcard"><span class="n">05</span><img src="g-4.webp" alt="Aluna treinando" loading="lazy"><figcaption>Para todos<small>Homens e mulheres, todas as idades</small></figcaption></figure>
+      <figure class="hcard"><span class="n">06</span><img src="g-5.webp" alt="Salão iluminado" loading="lazy"><figcaption>Ambiente<small>Iluminado e organizado</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="planos" class="dark pad">
+  <div class="wrap">
+    <span class="kicker rv">Planos</span>
+    <h2 class="display split">Escolha o seu plano<br>e comece hoje.</h2>
+    <p class="sub rv">Sem taxa escondida. Quanto mais tempo, menos você paga por mês.</p>
     <div class="plans">
-      <div class="plan">
-        <h3>Mensal</h3>
-        <div class="price">R$ 130<small> /mês</small></div>
-        <ul><li>Musculação livre</li><li>Treino montado pelo professor</li><li>Sem fidelidade</li></ul>
-        <a class="btn btn-ghost" href="https://wa.me/551126929824?text=Quero%20saber%20do%20plano%20mensal" target="_blank" rel="noopener">Quero esse</a>
-      </div>
-      <div class="plan hot">
-        <h3>Trimestral</h3>
-        <div class="price">R$ 80<small> /mês</small></div>
-        <ul><li>Tudo do mensal</li><li>Reavaliação do treino</li><li>Melhor custo-benefício</li></ul>
-        <a class="btn btn-primary" href="https://wa.me/551126929824?text=Quero%20saber%20do%20plano%20trimestral" target="_blank" rel="noopener">Quero esse</a>
-      </div>
-      <div class="plan">
-        <h3>Semestral</h3>
-        <div class="price">R$ 60<small> /mês</small></div>
-        <ul><li>Tudo do trimestral</li><li>Menor valor por mês</li><li>Desconto em suplementos</li></ul>
-        <a class="btn btn-ghost" href="https://wa.me/551126929824?text=Quero%20saber%20do%20plano%20semestral" target="_blank" rel="noopener">Quero esse</a>
-      </div>
+      <div class="plan-w rv"><div class="plan tilt spot">
+        <span class="name">Mensal</span>
+        <div class="price"><span class="cur">R$</span><span data-count="130">130</span><small>/mês</small></div>
+        <span class="note">Para começar sem compromisso</span>
+        <ul>
+          <li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Musculação livre</li>
+          <li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Treino montado pelo professor</li>
+          <li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Sem fidelidade</li>
+        </ul>
+        <a class="btn btn-line" href="https://wa.me/551126929824?text=Quero%20o%20plano%20mensal%20da%20Nil%20Fitness" target="_blank" rel="noopener">Quero o mensal</a>
+      </div></div>
+      <div class="plan-w rv"><div class="plan hot tilt spot">
+        <span class="spin" aria-hidden="true"></span>
+        <span class="tag">Mais escolhido</span>
+        <span class="name">Trimestral</span>
+        <div class="price"><span class="cur">R$</span><span data-count="80">80</span><small>/mês</small></div>
+        <span class="note">Economize R$ 150 no trimestre</span>
+        <ul>
+          <li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Tudo do mensal</li>
+          <li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Reavaliação do treino</li>
+          <li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Melhor custo-benefício</li>
+        </ul>
+        <a class="btn btn-red" href="https://wa.me/551126929824?text=Quero%20o%20plano%20trimestral%20da%20Nil%20Fitness" target="_blank" rel="noopener">Quero o trimestral</a>
+      </div></div>
+      <div class="plan-w rv"><div class="plan tilt spot">
+        <span class="name">Semestral</span>
+        <div class="price"><span class="cur">R$</span><span data-count="60">60</span><small>/mês</small></div>
+        <span class="note">O menor valor por mês</span>
+        <ul>
+          <li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Tudo do trimestral</li>
+          <li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Menor valor por mês</li>
+          <li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Desconto em suplementos</li>
+        </ul>
+        <a class="btn btn-line" href="https://wa.me/551126929824?text=Quero%20o%20plano%20semestral%20da%20Nil%20Fitness" target="_blank" rel="noopener">Quero o semestral</a>
+      </div></div>
     </div>
   </div>
 </section>
 
-<section id="avaliacoes" class="alt">
+<section id="avaliacoes" class="light pad" style="overflow:hidden">
   <div class="wrap">
-    <span class="tag">Avaliações</span>
-    <h2>Quem treina, recomenda.</h2>
-    <p class="sub">Nota 4,6 de 5 com 28 avaliações no Google.</p>
-    <div class="reviews">
-      <div class="review"><span class="stars">★★★★★</span><p>“Muito top, estrutura boa e professores atenciosos e prestativos.”</p><span>Mariana · Google</span></div>
-      <div class="review"><span class="stars">★★★★★</span><p>“São super legais e os frequentadores também. Sem frescuras.”</p><span>Lu F. · Google</span></div>
-      <div class="review"><span class="stars">★★★★★</span><p>“Vibe família e suplementos com preço ótimo.”</p><span>Aluno · Google</span></div>
+    <span class="kicker rv">Avaliações</span>
+    <h2 class="display split">Quem treina,<br>recomenda.</h2>
+    <div class="score rv"><b><span data-count="4.6" data-dec="1">4,6</span></b><div><span class="stars" style="font-size:1.3rem" aria-label="4,6 de 5 estrelas">★★★★★</span><p class="sub" style="margin:0">28 avaliações no Google</p></div></div>
+  </div>
+  <div class="reviews" aria-label="Avaliações de alunos">
+    <div class="rrow" data-dir="-1">
+      <figure class="review"><blockquote>Muito top, estrutura boa e professores atenciosos e prestativos.</blockquote><figcaption class="who"><span class="avatar">M</span><div><b>Mariana</b><br><span>Aluna · Google</span></div></figcaption></figure>
+      <figure class="review"><blockquote>São super legais e os frequentadores também. Sem frescuras.</blockquote><figcaption class="who"><span class="avatar">L</span><div><b>Lu F.</b><br><span>Aluna · Google</span></div></figcaption></figure>
+      <figure class="review"><blockquote>Vibe família e suplementos com preço ótimo.</blockquote><figcaption class="who"><span class="avatar">A</span><div><b>Aluno</b><br><span>Google</span></div></figcaption></figure>
+      <figure class="review"><blockquote>Treino há muito tempo, ótimo lugar pra quem gosta de musculação.</blockquote><figcaption class="who"><span class="avatar">A</span><div><b>Aluno</b><br><span>Google</span></div></figcaption></figure>
+    </div>
+    <div class="rrow" data-dir="1">
+      <figure class="review"><blockquote>Treino há muito tempo, ótimo lugar pra quem gosta de musculação.</blockquote><figcaption class="who"><span class="avatar">A</span><div><b>Aluno</b><br><span>Google</span></div></figcaption></figure>
+      <figure class="review"><blockquote>Vibe família e suplementos com preço ótimo.</blockquote><figcaption class="who"><span class="avatar">A</span><div><b>Aluno</b><br><span>Google</span></div></figcaption></figure>
+      <figure class="review"><blockquote>Muito top, estrutura boa e professores atenciosos e prestativos.</blockquote><figcaption class="who"><span class="avatar">M</span><div><b>Mariana</b><br><span>Aluna · Google</span></div></figcaption></figure>
+      <figure class="review"><blockquote>São super legais e os frequentadores também. Sem frescuras.</blockquote><figcaption class="who"><span class="avatar">L</span><div><b>Lu F.</b><br><span>Aluna · Google</span></div></figcaption></figure>
     </div>
   </div>
 </section>
 
-<section id="local">
+<section id="local" class="light pad" style="padding-top:0">
   <div class="wrap">
-    <span class="tag">Como chegar</span>
-    <h2>Pertinho de você, no Belenzinho.</h2>
-    <p class="sub">Fácil de chegar pela Av. Celso Garcia.</p>
+    <span class="kicker rv">Como chegar</span>
+    <h2 class="display split">Pertinho de você,<br>no Belenzinho.</h2>
     <div class="local">
-      <div class="info">
-        <div class="row"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><div><b>Endereço</b><span>Av. Celso Garcia, 1621 – Loja<br>Belenzinho, São Paulo – SP, 03014-000</span></div></div>
-        <div class="row"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Horário</b><span>Aberto até 21h<br>Confirme os horários pelo WhatsApp</span></div></div>
-        <div class="row"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg><div><b>Telefone</b><span>(11) 2692-9824</span></div></div>
-        <div class="row"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><div><b>Instagram</b><span><a href="https://instagram.com/acad.nilfitness" target="_blank" rel="noopener">@acad.nilfitness</a> · <a href="https://instagram.com/nil.fitness" target="_blank" rel="noopener">@nil.fitness</a></span></div></div>
-        <a class="btn btn-primary" style="margin-top:18px" href="https://www.google.com/maps/search/?api=1&query=Academia+Nil+Fitness+Av.+Celso+Garcia+1621" target="_blank" rel="noopener">Abrir rota no Maps</a>
+      <div class="info rv">
+        <div class="row"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><div><b>Endereço</b><span>Av. Celso Garcia, 1621 – Loja<br>Belenzinho, São Paulo – SP</span></div></div>
+        <div class="row"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Horário</b><span>Aberto até 21h · confirme pelo WhatsApp</span></div></div>
+        <div class="row"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg><div><b>Telefone e WhatsApp</b><span>(11) 2692-9824</span></div></div>
+        <div class="row"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><div><b>Instagram</b><span><a href="https://instagram.com/acad.nilfitness" target="_blank" rel="noopener">@acad.nilfitness</a> · <a href="https://instagram.com/nil.fitness" target="_blank" rel="noopener">@nil.fitness</a></span></div></div>
+        <a class="btn btn-red magnet" href="https://www.google.com/maps/search/?api=1&query=Academia+Nil+Fitness+Av.+Celso+Garcia+1621" target="_blank" rel="noopener">Abrir rota no Maps</a>
       </div>
-      <div class="map">
-        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa da Academia Nil Fitness" src="https://maps.google.com/maps?q=Academia%20Nil%20Fitness%2C%20Av.%20Celso%20Garcia%201621%2C%20S%C3%A3o%20Paulo&z=16&output=embed"></iframe>
-      </div>
+      <div class="map rv"><iframe loading="lazy" title="Mapa da Academia Nil Fitness" src="https://maps.google.com/maps?q=Academia%20Nil%20Fitness%2C%20Av.%20Celso%20Garcia%201621%2C%20S%C3%A3o%20Paulo&z=16&output=embed"></iframe></div>
     </div>
   </div>
 </section>
 
-<section>
-  <div class="final">
-    <h2>Sua primeira aula é por nossa conta.</h2>
-    <p>Mande uma mensagem, escolha o melhor horário e venha treinar com a gente.</p>
-    <a class="btn" href="https://wa.me/551126929824?text=Ol%C3%A1!%20Quero%20agendar%20uma%20aula%20experimental%20na%20Nil%20Fitness." target="_blank" rel="noopener">Agendar pelo WhatsApp</a>
+<section class="finale" id="final">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap z">
+    <span class="kicker">Aula experimental</span>
+    <h2 class="display split">Sua primeira aula<br>é <em>por nossa conta.</em></h2>
+    <p class="rv">Mande uma mensagem, escolha o melhor horário e venha treinar com a gente.</p>
+    <div class="cta rv">
+      <a class="btn btn-white magnet" href="https://wa.me/551126929824?text=Ol%C3%A1!%20Quero%20agendar%20uma%20aula%20experimental%20na%20Nil%20Fitness." target="_blank" rel="noopener">Agendar pelo WhatsApp</a>
+      <a class="btn btn-line magnet" href="#planos">Ver planos</a>
+    </div>
   </div>
 </section>
+</main>
 
 <footer>
   <div class="wrap">
-    <img class="foot-logo" src="logo-nome.webp" alt="Nil Fitness">
-    <p style="margin-bottom:14px"><a class="insta" href="https://instagram.com/acad.nilfitness" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@acad.nilfitness</a><a class="insta" href="https://instagram.com/nil.fitness" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@nil.fitness</a></p>
-    © Academia Nil Fitness · Av. Celso Garcia, 1621 – Belenzinho, São Paulo – SP
+    <a href="#inicio" aria-label="Voltar ao topo"><img src="logo-light.webp" alt="Nil Fitness"></a>
+    <div class="socials">
+      <a href="https://instagram.com/acad.nilfitness" target="_blank" rel="noopener">@acad.nilfitness</a>
+      <a href="https://instagram.com/nil.fitness" target="_blank" rel="noopener">@nil.fitness</a>
+    </div>
+    <p>© Academia Nil Fitness · Av. Celso Garcia, 1621 – Belenzinho, SP</p>
   </div>
 </footer>
 
 <a class="float" aria-label="Falar no WhatsApp" href="https://wa.me/551126929824?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Nil%20Fitness." target="_blank" rel="noopener">
-  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.7-1.1-4.5-3.9-4.6-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg>
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.7-1.1-4.5-3.9-4.6-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg>
 </a>
+<div class="mbar">
+  <a class="btn btn-wpp" href="https://wa.me/551126929824?text=Ol%C3%A1!%20Quero%20agendar%20uma%20aula%20experimental%20na%20Nil%20Fitness." target="_blank" rel="noopener">Aula grátis</a>
+  <a class="btn btn-red" href="#planos">Planos</a>
+</div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+// texto do manifesto em palavras (antes de qualquer animação)
+document.querySelectorAll('.manifesto .words').forEach((p) => {
+  p.innerHTML = p.textContent.trim().split(/\s+/).map((w) =>
+    w.startsWith('*') ? '<span class="w r">' + w.slice(1) + '</span>' : '<span class="w">' + w + '</span>').join(' ');
+});
+(() => {
+  const html = document.documentElement;
+  if (!window.gsap) { html.classList.add('no-gsap'); html.classList.remove('js'); return; }
+  if (html.classList.contains('rm')) return;
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+  const fine = matchMedia('(pointer: fine)').matches;
+  const mm = gsap.matchMedia();
+  window.NIL = { state: { x: .5, y: .04, s: .74, o: 1, spin: 0, intro: 0 }, ready: false };
+  const S = NIL.state;
+
+  // rolagem suave
+  const lenis = new Lenis({ lerp: .09 }); NIL.lenis = lenis;
+  ScrollTrigger.addEventListener('refresh', () => lenis.resize());
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((t) => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  lenis.stop();
+  // menu do celular
+  const burger = document.querySelector('.burger');
+  const setMenu = (open) => {
+    html.classList.toggle('menu-open', open); burger.setAttribute('aria-expanded', open);
+    burger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    open ? lenis.stop() : lenis.start();
+  };
+  burger.addEventListener('click', () => setMenu(!html.classList.contains('menu-open')));
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+  document.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
+    e.preventDefault(); setMenu(false); lenis.scrollTo(a.getAttribute('href'), { offset: 0, duration: 1.6 });
+  }));
+
+  // abertura: a logo é "escrita", a barra vermelha corre e a tela se abre ao meio
+  const pct = document.querySelector('.intro .pct'), cnt = { v: 0 };
+  const intro = gsap.timeline({ onComplete: () => { document.querySelector('.intro').remove(); lenis.start(); } });
+  intro.to('.intro .mark img', { clipPath: 'inset(0 0% 0 0)', duration: 1.1, ease: 'power3.inOut' })
+    .to('.intro .bar', { scaleX: 1, duration: 1.1, ease: 'power3.inOut' }, 0)
+    .to(cnt, { v: 100, duration: 1.1, ease: 'power3.inOut', onUpdate: () => pct.textContent = Math.round(cnt.v) + '%' }, 0)
+    .to('.intro .mark', { scale: .92, opacity: 0, duration: .5, ease: 'power2.in' }, '+=.15')
+    .to('.intro .pct', { opacity: 0, duration: .3 }, '<')
+    .to('.intro .top', { yPercent: -100, duration: 1, ease: 'expo.inOut' }, '-=.15')
+    .to('.intro .bot', { yPercent: 100, duration: 1, ease: 'expo.inOut' }, '<')
+    .from('.hero .bg', { scale: 1.35, duration: 2.2, ease: 'expo.out' }, '<.1')
+    .to(S, { intro: 1, duration: 1.4, ease: 'power2.out' }, '<.3')
+    .from(S, { spin: -3, duration: 2, ease: 'expo.out' }, '<')
+    .from('.hero h1 .lm>span', { yPercent: 115, rotate: 4, duration: 1.2, stagger: .1, ease: 'expo.out' }, '<.1')
+    .from('.h-in', { opacity: 0, y: 30, filter: 'blur(8px)', duration: 1, stagger: .1, ease: 'power3.out' }, '<.25')
+    .from('header', { yPercent: -100, duration: .9, ease: 'expo.out' }, '<');
+
+  // barra de progresso e topo
+  gsap.to('.progress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: true } });
+  const header = document.getElementById('top');
+  const lightSecs = gsap.utils.toArray('.light');
+  ScrollTrigger.create({ start: 0, end: 'max', onUpdate: (self) => {
+    const y = self.scroll(), mid = y + 40;
+    const onLight = lightSecs.some((s) => mid >= s.offsetTop && mid < s.offsetTop + s.offsetHeight);
+    header.classList.toggle('solid', onLight);
+    header.classList.toggle('hide', self.direction === 1 && y > innerHeight * .9);
+  } });
+
+  // capítulos
+  const chap = document.querySelector('.chapters');
+  chap.querySelectorAll('a').forEach((a) => {
+    const sec = document.querySelector(a.getAttribute('href'));
+    ScrollTrigger.create({ trigger: sec, start: 'top center', end: 'bottom center',
+      onToggle: (st) => { if (st.isActive) { chap.querySelectorAll('a').forEach((x) => x.classList.remove('on')); a.classList.add('on'); chap.classList.toggle('on-light', sec.classList.contains('light')); } } });
+  });
+
+  // hero: zoom e saída cinematográfica
+  gsap.timeline({ scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 } })
+    .to('.hero .bg', { scale: 1.2, yPercent: 14, ease: 'none' }, 0)
+    .to('.hero .content', { yPercent: -30, opacity: 0, filter: 'blur(6px)', ease: 'none' }, 0);
+  if (fine) {
+    const bx = gsap.quickTo('.hero .bg', 'x', { duration: 1, ease: 'power3' });
+    const by = gsap.quickTo('.hero .bg', 'y', { duration: 1, ease: 'power3' });
+    document.querySelector('.hero').addEventListener('mousemove', (e) => {
+      bx((e.clientX / innerWidth - .5) * -40); by((e.clientY / innerHeight - .5) * -24);
+    });
+  }
+
+  // o halter viaja pela página conforme a rolagem
+  mm.add({ d: '(min-width: 901px)', m: '(max-width: 900px)' }, (ctx) => {
+    // x e y em frações da metade da tela; s em escala
+    const d = ctx.conditions.d;
+    S.x = d ? .5 : 0; S.y = d ? .04 : .5; S.s = d ? .74 : .78;
+    if (!d) {
+      // no celular o halter ocupa o espaço livre entre o topo e o selo de avaliação
+      const free = document.querySelector('.hero .chip').getBoundingClientRect().top - 72;
+      S.y = 1 - (72 + free / 2) / (innerHeight / 2);
+      S.s = free < 90 ? .001 : gsap.utils.clamp(.32, .78, free / 300);
+    }
+    gsap.timeline({ scrollTrigger: { trigger: '.manifesto', start: 'top bottom', end: 'top top', scrub: 1 } })
+      .to(S, { x: d ? .66 : .35, y: d ? -.3 : -.62, s: d ? .6 : .36, spin: '+=2.2', ease: 'none' });
+    gsap.timeline({ scrollTrigger: { trigger: '.expand', start: 'top bottom', end: 'top 55%', scrub: .5 } })
+      .to(S, { o: 0, y: '+=.6', ease: 'none' });
+    gsap.timeline({ scrollTrigger: { trigger: '.finale', start: 'top bottom', end: 'center center', scrub: 1 } })
+      .fromTo(S, { x: 0, y: 0, s: .25, o: 0 }, { x: 0, y: d ? -.05 : 0, s: d ? 1.05 : .55, o: .5, spin: '+=3', ease: 'none', immediateRender: false });
+  });
+
+  // manifesto: palavras acendem com a rolagem
+  mm.add('(min-width: 0px)', () => {
+    gsap.timeline({ scrollTrigger: { trigger: '.manifesto', start: 'top top', end: '+=140%', pin: true, scrub: 1, refreshPriority: 1 } })
+      .to('.manifesto .w', { opacity: 1, stagger: .1, ease: 'none' });
+  });
+
+  // imagem que expande até a tela inteira
+  gsap.timeline({ scrollTrigger: { trigger: '.expand', start: 'top top', end: '+=150%', pin: true, scrub: 1, refreshPriority: 1 } })
+    .to('.expand .media', { width: '100vw', height: '100vh', borderRadius: 0, ease: 'power1.inOut' }, 0)
+    .to('.expand .media img', { scale: 1, ease: 'none' }, 0)
+    .to('.expand .words span:first-child', { xPercent: -140, opacity: 0, ease: 'power1.in' }, 0)
+    .to('.expand .words span:last-child', { xPercent: 140, opacity: 0, ease: 'power1.in' }, 0)
+    .to('.expand .caption', { opacity: 1, y: -10, ease: 'none' }, .55);
+
+  // títulos linha a linha
+  document.querySelectorAll('h2.split').forEach((h) => {
+    h.innerHTML = h.innerHTML.split('<br>').map((l) => '<span class="lm"><span>' + l.trim() + '</span></span>').join('');
+    gsap.from(h.querySelectorAll('.lm>span'), { yPercent: 115, rotate: 3, duration: 1.1, stagger: .12, ease: 'expo.out',
+      scrollTrigger: { trigger: h, start: 'top 86%', once: true } });
+  });
+
+  // entradas (sempre terminam visíveis)
+  ScrollTrigger.batch('.rv', { start: 'top 90%', once: true,
+    onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 1, stagger: .09, ease: 'power3.out', overwrite: true }) });
+
+  // contadores (preços inclusive) — só animam uma vez e param no número certo
+  document.querySelectorAll('[data-count]').forEach((el) => {
+    const end = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0), o = { v: 0 };
+    const fmt = (v) => v.toFixed(dec).replace('.', ',');
+    el.textContent = fmt(0);
+    ScrollTrigger.create({ trigger: el, start: 'top 92%', once: true, onEnter: () =>
+      gsap.to(o, { v: end, duration: 1.6, ease: 'power3.out', onUpdate: () => el.textContent = fmt(o.v), onComplete: () => el.textContent = fmt(end) }) });
+  });
+
+  // fotos dos blocos com parallax interno
+  gsap.utils.toArray('.tile.photo img').forEach((img) =>
+    gsap.fromTo(img, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: img.closest('.tile'), scrub: true } }));
+
+  // inclinação 3D + luz que segue o mouse (no elemento interno, separado da entrada)
+  if (fine) document.querySelectorAll('.tilt').forEach((card) => {
+    const rx = gsap.quickTo(card, 'rotationX', { duration: .6, ease: 'power3' });
+    const ry = gsap.quickTo(card, 'rotationY', { duration: .6, ease: 'power3' });
+    card.addEventListener('pointermove', (e) => {
+      const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      rx((.5 - y) * 10); ry((x - .5) * 12);
+      card.style.setProperty('--mx', x * 100 + '%'); card.style.setProperty('--my', y * 100 + '%');
+    });
+    card.addEventListener('pointerleave', () => { rx(0); ry(0); });
+  });
+
+  // galeria horizontal (desktop)
+  mm.add('(min-width: 761px)', () => {
+    const track = document.querySelector('.htrack');
+    const dist = () => track.scrollWidth - innerWidth + 48;
+    const h = gsap.to(track, { x: () => -dist(), ease: 'none',
+      scrollTrigger: { trigger: '.hscroll', start: 'top top', end: () => '+=' + dist(), pin: '.hscroll .pin', scrub: 1, invalidateOnRefresh: true, refreshPriority: 1 } });
+    gsap.utils.toArray('.hcard img').forEach((img) => gsap.fromTo(img, { xPercent: -10 }, { xPercent: 10, ease: 'none',
+      scrollTrigger: { trigger: img.parentElement, containerAnimation: h, start: 'left right', end: 'right left', scrub: true } }));
+    gsap.utils.toArray('.hcard').forEach((c) => gsap.from(c, { rotationY: -30, scale: .82, opacity: .25, transformPerspective: 1200, ease: 'none',
+      scrollTrigger: { trigger: c, containerAnimation: h, start: 'left right', end: 'left 55%', scrub: true } }));
+  });
+
+  // avaliações em duas faixas, em sentidos opostos, que aceleram com a rolagem
+  document.querySelectorAll('.rrow').forEach((row) => {
+    row.innerHTML += row.innerHTML;
+    const dir = +row.dataset.dir;
+    const tw = gsap.fromTo(row, { xPercent: dir < 0 ? 0 : -50 }, { xPercent: dir < 0 ? -50 : 0, duration: 40, ease: 'none', repeat: -1 });
+    ScrollTrigger.create({ trigger: '#avaliacoes', onUpdate: (s) => gsap.to(tw, { timeScale: 1 + Math.min(Math.abs(s.getVelocity()) / 400, 5), duration: .2, overwrite: true, onComplete: () => gsap.to(tw, { timeScale: 1, duration: 1 }) }) });
+    row.addEventListener('pointerenter', () => gsap.to(tw, { timeScale: 0, duration: .5 }));
+    row.addEventListener('pointerleave', () => gsap.to(tw, { timeScale: 1, duration: .5 }));
+  });
+
+  // cursor e botões magnéticos
+  if (fine) {
+    const cur = document.querySelector('.cursor');
+    const cx = gsap.quickTo(cur, 'x', { duration: .2, ease: 'power3' }), cy = gsap.quickTo(cur, 'y', { duration: .2, ease: 'power3' });
+    addEventListener('pointermove', (e) => { cx(e.clientX); cy(e.clientY); });
+    document.querySelectorAll('a,.tilt').forEach((el) => {
+      el.addEventListener('pointerenter', () => cur.classList.add('big'));
+      el.addEventListener('pointerleave', () => cur.classList.remove('big'));
+    });
+    document.querySelectorAll('.magnet').forEach((b) => {
+      const mx = gsap.quickTo(b, 'x', { duration: .5, ease: 'elastic.out(1,.4)' }), my = gsap.quickTo(b, 'y', { duration: .5, ease: 'elastic.out(1,.4)' });
+      b.addEventListener('pointermove', (e) => { const r = b.getBoundingClientRect(); mx((e.clientX - r.left - r.width / 2) * .35); my((e.clientY - r.top - r.height / 2) * .45); });
+      b.addEventListener('pointerleave', () => { mx(0); my(0); });
+    });
+  }
+
+  // gatilhos calculados na ordem da página, para os trechos fixados (pin) empurrarem os seguintes
+  ScrollTrigger.sort(); ScrollTrigger.refresh();
+  addEventListener('load', () => { ScrollTrigger.sort(); ScrollTrigger.refresh(); });
+  NIL.ready = true;
+})();
+</script>
+
+<script type="module">
+// Halter 3D realista: cabeças sextavadas emborrachadas, pegada cromada com recartilhado,
+// reflexos de estúdio (RoomEnvironment) e a logo da Nil gravada nas faces.
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+const canvas = document.getElementById('stage');
+if (window.NIL && getComputedStyle(canvas).display !== 'none') {
+  const S = NIL.state;
+  const mobile = innerWidth < 901;
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !mobile, powerPreference: 'high-performance' });
+  // limita a resolução interna (celular e TVs 4K) para manter a fluidez
+  renderer.setPixelRatio(Math.min(devicePixelRatio, mobile ? 1.5 : 2, 2560 / innerWidth));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  const scene = new THREE.Scene();
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), .04).texture;
+  const cam = new THREE.PerspectiveCamera(30, innerWidth / innerHeight, .1, 100);
+  cam.position.set(0, 0, 11);
+
+  // luzes: chave branca + recortes vermelhos da marca
+  const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(4, 6, 5); scene.add(key);
+  const rimA = new THREE.PointLight(0xff1a0d, 60, 18, 1.6); rimA.position.set(-4, -1.5, 2.5); scene.add(rimA);
+  const rimB = new THREE.PointLight(0xff3b30, 40, 18, 1.6); rimB.position.set(4.5, 2, -3); scene.add(rimB);
+
+  // texturas procedurais: recartilhado da pegada e logo
+  const knurl = (() => {
+    const c = document.createElement('canvas'); c.width = c.height = 256; const g = c.getContext('2d');
+    g.fillStyle = '#808080'; g.fillRect(0, 0, 256, 256); g.strokeStyle = '#ffffff'; g.lineWidth = 3;
+    for (let i = -256; i < 512; i += 16) { g.beginPath(); g.moveTo(i, 0); g.lineTo(i + 256, 256); g.stroke(); g.beginPath(); g.moveTo(i + 256, 0); g.lineTo(i, 256); g.stroke(); }
+    const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(10, 2); return t;
+  })();
+  const logoTex = new THREE.TextureLoader().load('logo-light.webp'); logoTex.colorSpace = THREE.SRGBColorSpace; logoTex.anisotropy = 8;
+
+  const chrome = new THREE.MeshPhysicalMaterial({ color: 0xe6e6ea, metalness: 1, roughness: .12, clearcoat: 1, clearcoatRoughness: .05 });
+  const grip = new THREE.MeshStandardMaterial({ color: 0xbfbfc5, metalness: 1, roughness: .38, bumpMap: knurl, bumpScale: 2.2 });
+  const rubber = new THREE.MeshPhysicalMaterial({ color: 0x0c0c0e, metalness: 0, roughness: .48, clearcoat: .35, clearcoatRoughness: .5, sheen: .4, sheenColor: new THREE.Color(0x330000) });
+  const redPaint = new THREE.MeshPhysicalMaterial({ color: 0xe10600, metalness: .2, roughness: .25, clearcoat: 1, emissive: 0x2a0000 });
+
+  const along = (geo) => { geo.rotateZ(Math.PI / 2); return geo; };
+  const db = new THREE.Group();
+
+  // pegada recartilhada + ombros cromados
+  db.add(new THREE.Mesh(along(new THREE.CylinderGeometry(.19, .19, 2.3, 64)), grip));
+  [-1, 1].forEach((s) => {
+    const sh = new THREE.Mesh(along(new THREE.CylinderGeometry(.27, .22, .22, 64)), chrome); sh.position.x = s * 1.22; db.add(sh);
+    const ring = new THREE.Mesh(along(new THREE.CylinderGeometry(.33, .33, .06, 64)), redPaint); ring.position.x = s * 1.36; db.add(ring);
+    const flange = new THREE.Mesh(along(new THREE.CylinderGeometry(.55, .55, .12, 64)), chrome); flange.position.x = s * 1.45; db.add(flange);
+
+    // cabeça sextavada com chanfro (extrusão com bisel)
+    const hex = new THREE.Shape(); const R = 1.05;
+    for (let i = 0; i < 6; i++) { const a = Math.PI / 6 + i * Math.PI / 3; const x = Math.cos(a) * R, y = Math.sin(a) * R; i ? hex.lineTo(x, y) : hex.moveTo(x, y); }
+    hex.closePath();
+    const hg = new THREE.ExtrudeGeometry(hex, { depth: .82, bevelEnabled: true, bevelThickness: .09, bevelSize: .09, bevelSegments: 6, curveSegments: 1 });
+    hg.center(); hg.rotateY(Math.PI / 2);
+    const head = new THREE.Mesh(hg, rubber); head.position.x = s * 2.0; db.add(head);
+
+    // aro vermelho e tampa cromada na face externa
+    const cap = new THREE.Mesh(along(new THREE.CylinderGeometry(.42, .42, .05, 64)), chrome); cap.position.x = s * 2.47; db.add(cap);
+    const capRing = new THREE.Mesh(new THREE.TorusGeometry(.5, .035, 16, 64), redPaint); capRing.rotation.y = Math.PI / 2; capRing.position.x = s * 2.46; db.add(capRing);
+
+    // logo gravada na lateral da cabeça
+    const lg = new THREE.Mesh(new THREE.PlaneGeometry(.86, .29), new THREE.MeshStandardMaterial({ map: logoTex, transparent: true, roughness: .35, metalness: .1, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 }));
+    lg.position.set(s * 2.0, 0, 1.0); db.add(lg);
+    const lg2 = lg.clone(); lg2.position.z = -1.0; lg2.rotation.y = Math.PI; db.add(lg2);
+  });
+  db.rotation.set(.32, -.6, .18);
+  scene.add(db);
+
+  // poeira de luz vermelha
+  const N = mobile ? 90 : 220, pos = new Float32Array(N * 3), spd = new Float32Array(N);
+  for (let i = 0; i < N; i++) { pos[i * 3] = (Math.random() - .5) * 16; pos[i * 3 + 1] = (Math.random() - .5) * 10; pos[i * 3 + 2] = (Math.random() - .5) * 6 - 1; spd[i] = .1 + Math.random() * .4; }
+  const pg = new THREE.BufferGeometry(); pg.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  const dot = (() => { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d'); const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, 'rgba(255,80,60,1)'); gr.addColorStop(1, 'rgba(255,0,0,0)'); g.fillStyle = gr; g.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(c); })();
+  const pts = new THREE.Points(pg, new THREE.PointsMaterial({ size: .09, map: dot, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: .85 }));
+  scene.add(pts);
+
+  const size = () => { renderer.setSize(innerWidth, innerHeight, false); cam.aspect = innerWidth / innerHeight; cam.updateProjectionMatrix(); };
+  size(); addEventListener('resize', size);
+
+  const m = { x: 0, y: 0 }, t = { x: 0, y: 0 };
+  addEventListener('pointermove', (e) => { t.x = e.clientX / innerWidth - .5; t.y = e.clientY / innerHeight - .5; });
+  const clock = new THREE.Clock(); let last = 0;
+  renderer.setAnimationLoop(() => {
+    const el = clock.getElapsedTime(), dt = Math.min(el - last, .05); last = el;
+    const op = S.o * S.intro;
+    canvas.style.opacity = op; canvas.style.visibility = op < .01 ? 'hidden' : 'visible';
+    if (op < .01 || document.hidden) return;
+    m.x += (t.x - m.x) * .06; m.y += (t.y - m.y) * .06;
+    const halfH = Math.tan(cam.fov * Math.PI / 360) * cam.position.z, halfW = halfH * cam.aspect;
+    db.position.set(S.x * halfW + m.x * .3, S.y * halfH + Math.sin(el * 1.1) * .12 - m.y * .2, 0);
+    db.scale.setScalar(S.s * Math.min(1, halfW / 4.4));
+    db.rotation.y = -.6 + el * .28 + m.x * 1.1 + S.spin;
+    db.rotation.x = .32 + m.y * .7 + Math.sin(el * .7) * .06;
+    db.rotation.z = .18 + Math.sin(el * .5) * .05;
+    rimA.position.x = -4 + Math.sin(el * .6) * 1.5;
+    const p = pg.attributes.position.array;
+    for (let i = 0; i < N; i++) { p[i * 3 + 1] += spd[i] * dt; if (p[i * 3 + 1] > 5) p[i * 3 + 1] = -5; }
+    pg.attributes.position.needsUpdate = true;
+    pts.rotation.y = m.x * .25;
+    renderer.render(scene, cam);
+  });
+}
+</script>
 </body>
 </html>
