@@ -80,7 +80,7 @@
   /* topo */
   header{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .4s,border-color .4s,transform .5s var(--ease);border-bottom:1px solid transparent}
   header.solid{background:rgba(255,255,255,.9);-webkit-backdrop-filter:saturate(1.6) blur(14px);backdrop-filter:saturate(1.6) blur(14px);border-color:rgba(0,0,0,.08)}
-  header.hide{transform:translateY(-100%)}
+  header.hide,.js:not(.rm):not(.no-gsap) header.pre{transform:translateY(-100%)}
   header{padding-top:env(safe-area-inset-top)}
   header .wrap{display:flex;align-items:center;justify-content:space-between;height:4.9rem;gap:16px}
   .hright{display:flex;align-items:center;gap:10px}
@@ -328,7 +328,7 @@
   <a href="#inicio">Início</a><a href="#manifesto">Manifesto</a><a href="#academia">A academia</a><a href="#espaco">O espaço</a><a href="#planos">Planos</a><a href="#avaliacoes">Avaliações</a><a href="#local">Local</a>
 </nav>
 
-<header id="top">
+<header id="top" class="pre">
   <div class="wrap">
     <a href="#inicio" class="logo" aria-label="Nil Fitness, início"><img class="l-light" src="logo-light.webp" alt="Nil Fitness"><img class="l-dark" src="logo-dark.webp" alt=""></a>
     <nav aria-label="Seções">
@@ -574,8 +574,8 @@ document.querySelectorAll('.manifesto .words').forEach((p) => {
 });
 (() => {
   const html = document.documentElement;
-  if (!window.gsap) { html.classList.add('no-gsap'); html.classList.remove('js'); return; }
-  if (html.classList.contains('rm')) return;
+  if (!window.gsap) { html.classList.add('no-gsap'); html.classList.remove('js'); document.getElementById('top').classList.remove('pre'); return; }
+  if (html.classList.contains('rm')) { document.getElementById('top').classList.remove('pre'); return; }
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ ignoreMobileResize: true });
   const fine = matchMedia('(pointer: fine)').matches;
@@ -618,7 +618,7 @@ document.querySelectorAll('.manifesto .words').forEach((p) => {
     .from(S, { spin: -3, duration: 2, ease: 'expo.out' }, '<')
     .from('.hero h1 .lm>span', { yPercent: 115, rotate: 4, duration: 1.2, stagger: .1, ease: 'expo.out' }, '<.1')
     .from('.h-in', { opacity: 0, y: 30, filter: 'blur(8px)', duration: 1, stagger: .1, ease: 'power3.out' }, '<.25')
-    .from('header', { yPercent: -100, duration: .9, ease: 'expo.out' }, '<');
+    .add(() => document.getElementById('top').classList.remove('pre'), '<');
 
   // barra de progresso e topo
   gsap.to('.progress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: true } });
