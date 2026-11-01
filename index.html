@@ -199,7 +199,7 @@
   .tile p{color:var(--muted);font-size:.98rem;transform:translateZ(24px)}
   .tile .ic{position:absolute;top:24px;left:24px;width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:#fff;border:1px solid var(--line);color:var(--red);transform:translateZ(50px)}
   .tile.photo{padding:0;border:0;background:var(--ink)}
-  .tile.photo img{position:absolute;inset:-12% 0;width:100%;height:124%;object-fit:cover;will-change:transform;z-index:-1}
+  .tile.photo img{position:absolute;inset:-5% 0;width:100%;height:110%;object-fit:cover;object-position:center 22%;will-change:transform;z-index:-1}
   .tile.photo .cap{padding:28px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.85));transform-style:preserve-3d}
   .tile.photo .cap p{color:#e4e4e7}
   .tile.red{background:var(--red);border-color:var(--red);color:#fff}
@@ -209,15 +209,21 @@
   .tile.ink p{color:var(--muted-dark)}
   .tile.ink .ic{background:var(--ink-3);border-color:var(--line-dark)}
   .span-2{grid-column:span 2}.row-2{grid-row:span 2}
+  .tile-w.tall .tile{min-height:400px}
+  .tile .big small{font-size:.38em;margin-left:4px;vertical-align:.9em}
+  .tile.red .big small{margin:0 4px 0 0}
+  .tile.ink .big{font-family:"Barlow Condensed";font-weight:800;font-size:6.4rem;line-height:.85;color:var(--red);transform:translateZ(60px);margin-bottom:auto}
+  .tile.red .big{margin-bottom:auto}
+  a.tile{color:#fff}
   @media(max-width:960px){.bento{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:560px){.bento{grid-template-columns:1fr}.span-2{grid-column:auto}.row-2{grid-row:auto}.tile.photo{min-height:340px}}
+  @media(max-width:560px){.bento{grid-template-columns:1fr 1fr;gap:12px}.span-2{grid-column:span 2}.row-2{grid-row:auto}.tile.photo{min-height:300px}.tile-w.tall .tile{min-height:280px}.tile-w.tall .tile:not(.photo){padding:18px}.tile-w.tall .cap{padding:16px}.tile-w.tall h3{font-size:1.35rem}.tile-w.tall p{font-size:.85rem}.tile .big,.tile.ink .big{font-size:4.4rem}.bento>.tile-w:not(.span-2):not(.tall){grid-column:span 2}}
 
   /* galeria horizontal */
   .hscroll{background:var(--ink);color:#fff;overflow:hidden}
   .hscroll .pin{height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;gap:44px}
   .htrack{display:flex;gap:26px;padding:0 24px 0 max(24px,calc((100vw - 1280px)/2 + 24px));width:max-content;will-change:transform}
   .hcard{position:relative;width:min(400px,74vw);height:min(520px,58vh);border-radius:26px;overflow:hidden;flex:none;background:var(--ink-3)}
-  .hcard img{position:absolute;top:0;left:-15%;width:130%;height:100%;object-fit:cover;will-change:transform}
+  .hcard img{position:absolute;top:0;left:-15%;width:130%;height:100%;object-fit:cover;object-position:center 22%;will-change:transform}
   .hcard figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px;background:linear-gradient(transparent,rgba(0,0,0,.88));font-family:"Barlow Condensed";font-weight:800;text-transform:uppercase;font-size:1.7rem;line-height:1}
   .hcard figcaption small{display:block;margin-top:6px;font-family:Barlow;font-weight:500;text-transform:none;font-size:.95rem;color:#d4d4d8}
   .hcard .n{position:absolute;top:20px;left:22px;font-family:"Barlow Condensed";font-weight:700;letter-spacing:2px;font-size:.9rem;color:#fff;background:rgba(0,0,0,.4);padding:4px 10px;border-radius:999px;backdrop-filter:blur(6px)}
@@ -406,7 +412,7 @@
 
     <div class="bento">
       <div class="tile-w span-2 row-2 rv"><div class="tile photo tilt">
-        <img src="treino-2.webp" alt="Aluno treinando no aparelho" loading="lazy" style="object-position:center 40%">
+        <img src="treino-2.webp" alt="Aluno treinando no aparelho" loading="lazy" style="object-position:center 28%">
         <div class="cap"><h3>Estrutura boa</h3><p>Aparelhos e pesos livres para treinar do iniciante ao avançado.</p></div>
       </div></div>
       <div class="tile-w rv"><div class="tile red tilt"><div class="big">4,6</div><p>de 5 no Google, com 28 avaliações de quem treina aqui.</p></div></div>
@@ -422,14 +428,22 @@
         <img src="suplementos.webp" alt="Loja de suplementos dentro da academia" loading="lazy">
         <div class="cap"><h3>Suplementos</h3><p>Com preço bom, ali mesmo.</p></div>
       </div></div>
-      <div class="tile-w span-2 rv"><div class="tile photo tilt" style="min-height:300px">
-        <img src="g-1.webp" alt="Aluno no salão da Nil Fitness, com a logo da academia ao fundo" loading="lazy" style="object-position:center 30%">
+      <div class="tile-w tall rv"><div class="tile photo tilt">
+        <img src="g-1.webp" alt="Aluno no salão da Nil Fitness, com a logo da academia ao fundo" loading="lazy" style="object-position:center 18%">
         <div class="cap"><h3>Treino de verdade</h3><p>Do primeiro dia ao seu melhor shape.</p></div>
       </div></div>
-      <div class="tile-w span-2 rv"><div class="tile tilt">
-        <div class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-        <h3>Aberto até 21h</h3><p>Dá para treinar antes ou depois do trabalho, com calma.</p>
+      <div class="tile-w tall rv"><div class="tile ink tilt">
+        <div class="big">21<small>H</small></div>
+        <h3>Aberto até tarde</h3><p>Dá para treinar antes ou depois do trabalho, com calma.</p>
       </div></div>
+      <div class="tile-w tall rv"><div class="tile photo tilt">
+        <img src="g-2.webp" alt="Dois alunos treinando juntos na Nil Fitness" loading="lazy" style="object-position:center 20%">
+        <div class="cap"><h3>Treino em dupla</h3><p>Aqui se treina junto.</p></div>
+      </div></div>
+      <div class="tile-w tall rv"><a class="tile red tilt" href="#planos">
+        <div class="big"><small>R$</small>60</div>
+        <h3>A partir de /mês</h3><p>Veja os planos e escolha o seu.</p>
+      </a></div>
     </div>
   </div>
 </section>
