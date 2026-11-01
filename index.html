@@ -173,7 +173,15 @@
   .expand .caption{position:absolute;left:0;right:0;bottom:8vh;text-align:center;z-index:3;opacity:0}
   .expand .caption p{max-width:560px;margin:0 auto;color:#e4e4e7;font-size:1.15rem}
   .expand{height:100svh}
-  @media(max-width:760px){.expand .media{width:72vw;height:44svh}.expand .words{flex-direction:column;gap:0}.expand .words span{font-size:clamp(3rem,17vw,6rem)}.expand .caption{bottom:calc(90px + env(safe-area-inset-bottom));padding:0 24px}}
+  @media(max-width:900px){
+    .manifesto{min-height:auto;padding:110px 0}
+    .expand{height:auto;padding:80px 18px 70px;display:flex;flex-direction:column;align-items:center;gap:24px}
+    .expand .media{position:relative;left:auto;top:auto;transform:none;width:100%;max-width:620px;height:56svh}
+    .expand .media img{transform:none}
+    .expand .words{inset:80px 18px auto;height:56svh}
+    .expand .caption{position:static;opacity:1;padding:0 6px}
+  }
+  @media(max-width:760px){.expand .media{width:100%;height:56svh}.expand .words{flex-direction:column;gap:0}.expand .words span{font-size:clamp(3rem,17vw,6rem)}.expand .caption{bottom:calc(90px + env(safe-area-inset-bottom));padding:0 24px}}
 
   /* contadores + bento */
   .counters{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:64px}
@@ -640,9 +648,11 @@ document.querySelectorAll('.manifesto .words').forEach((p) => {
   });
 
   // hero: zoom e saída cinematográfica
-  gsap.timeline({ scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 } })
-    .to('.hero .bg', { scale: 1.2, yPercent: 14, ease: 'none' }, 0)
-    .to('.hero .content', { yPercent: -30, opacity: 0, filter: 'blur(6px)', ease: 'none' }, 0);
+  mm.add('(min-width: 901px)', () => {
+    gsap.timeline({ scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 } })
+      .to('.hero .bg', { scale: 1.2, yPercent: 14, ease: 'none' }, 0)
+      .to('.hero .content', { yPercent: -30, opacity: 0, filter: 'blur(6px)', ease: 'none' }, 0);
+  });
   if (fine) {
     const bx = gsap.quickTo('.hero .bg', 'x', { duration: 1, ease: 'power3' });
     const by = gsap.quickTo('.hero .bg', 'y', { duration: 1, ease: 'power3' });
@@ -662,27 +672,48 @@ document.querySelectorAll('.manifesto .words').forEach((p) => {
       S.y = 1 - (72 + free / 2) / (innerHeight / 2);
       S.s = free < 90 ? .001 : gsap.utils.clamp(.32, .78, free / 300);
     }
+    S.mobile = !d;
+    if (!d) {
+      // celular: o halter fica preso ao topo (rola junto com a página) e some ao sair do hero
+      ScrollTrigger.create({ trigger: '.hero', start: 'top top', end: 'bottom top', onUpdate: (st) => { S.o = 1 - st.progress; } });
+      return () => { S.mobile = false; S.o = 1; };
+    }
     gsap.timeline({ scrollTrigger: { trigger: '.manifesto', start: 'top bottom', end: 'top top', scrub: 1 } })
-      .to(S, { x: d ? .66 : .35, y: d ? -.3 : -.62, s: d ? .6 : .36, spin: '+=2.2', ease: 'none' });
+      .to(S, { x: .66, y: -.3, s: .6, spin: '+=2.2', ease: 'none' });
     gsap.timeline({ scrollTrigger: { trigger: '.expand', start: 'top bottom', end: 'top 55%', scrub: .5 } })
       .to(S, { o: 0, y: '+=.6', ease: 'none' });
     gsap.timeline({ scrollTrigger: { trigger: '.finale', start: 'top bottom', end: 'center center', scrub: 1 } })
-      .fromTo(S, { x: 0, y: 0, s: .25, o: 0 }, { x: 0, y: d ? -.05 : 0, s: d ? 1.05 : .55, o: .5, spin: '+=3', ease: 'none', immediateRender: false });
+      .fromTo(S, { x: 0, y: 0, s: .25, o: 0 }, { x: 0, y: -.05, s: 1.05, o: .5, spin: '+=3', ease: 'none', immediateRender: false });
   });
 
   // manifesto: palavras acendem com a rolagem
-  mm.add('(min-width: 0px)', () => {
-    gsap.timeline({ scrollTrigger: { trigger: '.manifesto', start: 'top top', end: '+=140%', pin: true, scrub: 1, refreshPriority: 1 } })
-      .to('.manifesto .w', { opacity: 1, stagger: .1, ease: 'none' });
+  mm.add({ d: '(min-width: 901px)', m: '(max-width: 900px)' }, (ctx) => {
+    if (ctx.conditions.d) {
+      gsap.timeline({ scrollTrigger: { trigger: '.manifesto', start: 'top top', end: '+=140%', pin: true, scrub: 1, refreshPriority: 1 } })
+        .to('.manifesto .w', { opacity: 1, stagger: .1, ease: 'none' });
+    } else {
+      // celular: sem fixar a tela; as palavras acendem enquanto passam
+      gsap.to('.manifesto .w', { opacity: 1, stagger: .05, ease: 'none',
+        scrollTrigger: { trigger: '.manifesto p', start: 'top 80%', end: 'bottom 55%', scrub: .6 } });
+    }
   });
 
   // imagem que expande até a tela inteira
-  gsap.timeline({ scrollTrigger: { trigger: '.expand', start: 'top top', end: '+=150%', pin: true, scrub: 1, refreshPriority: 1 } })
-    .to('.expand .media', { width: '100vw', height: '100vh', borderRadius: 0, ease: 'power1.inOut' }, 0)
-    .to('.expand .media img', { scale: 1, ease: 'none' }, 0)
-    .to('.expand .words span:first-child', { xPercent: -140, opacity: 0, ease: 'power1.in' }, 0)
-    .to('.expand .words span:last-child', { xPercent: 140, opacity: 0, ease: 'power1.in' }, 0)
-    .to('.expand .caption', { opacity: 1, y: -10, ease: 'none' }, .55);
+  mm.add({ d: '(min-width: 901px)', m: '(max-width: 900px)' }, (ctx) => {
+    if (ctx.conditions.d) {
+      gsap.timeline({ scrollTrigger: { trigger: '.expand', start: 'top top', end: '+=150%', pin: true, scrub: 1, refreshPriority: 1 } })
+        .to('.expand .media', { width: '100vw', height: '100vh', borderRadius: 0, ease: 'power1.inOut' }, 0)
+        .to('.expand .media img', { scale: 1, ease: 'none' }, 0)
+        .to('.expand .words span:first-child', { xPercent: -140, opacity: 0, ease: 'power1.in' }, 0)
+        .to('.expand .words span:last-child', { xPercent: 140, opacity: 0, ease: 'power1.in' }, 0)
+        .to('.expand .caption', { opacity: 1, y: -10, ease: 'none' }, .55);
+    } else {
+      // celular: a foto só aparece com um zoom leve, sem fixar a tela
+      gsap.set('.expand .media img', { scale: 1 });
+      gsap.from('.expand .media', { scale: .9, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '.expand', start: 'top 75%', once: true } });
+      gsap.from('.expand .words span', { y: 40, opacity: 0, duration: .9, stagger: .12, ease: 'power3.out', scrollTrigger: { trigger: '.expand', start: 'top 70%', once: true } });
+    }
+  });
 
   // títulos linha a linha
   document.querySelectorAll('h2.split').forEach((h) => {
@@ -705,8 +736,10 @@ document.querySelectorAll('.manifesto .words').forEach((p) => {
   });
 
   // fotos dos blocos com parallax interno
-  gsap.utils.toArray('.tile.photo img').forEach((img) =>
-    gsap.fromTo(img, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: img.closest('.tile'), scrub: true } }));
+  mm.add('(min-width: 901px)', () => {
+    gsap.utils.toArray('.tile.photo img').forEach((img) =>
+      gsap.fromTo(img, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: img.closest('.tile'), scrub: true } }));
+  });
 
   // inclinação 3D + luz que segue o mouse (no elemento interno, separado da entrada)
   if (fine) document.querySelectorAll('.tilt').forEach((card) => {
@@ -858,10 +891,15 @@ if (window.NIL && getComputedStyle(canvas).display !== 'none') {
     if (op < .01 || document.hidden) return;
     m.x += (t.x - m.x) * .06; m.y += (t.y - m.y) * .06;
     const halfH = Math.tan(cam.fov * Math.PI / 360) * cam.position.z, halfW = halfH * cam.aspect;
-    db.position.set(S.x * halfW + m.x * .3, S.y * halfH + Math.sin(el * 1.1) * .12 - m.y * .2, 0);
+    if (S.mobile) {
+      // celular: parado no topo, acompanhando a rolagem como parte da página
+      db.position.set(S.x * halfW, S.y * halfH + scrollY * (2 * halfH / innerHeight), 0);
+    } else {
+      db.position.set(S.x * halfW + m.x * .3, S.y * halfH + Math.sin(el * 1.1) * .12 - m.y * .2, 0);
+    }
     db.scale.setScalar(S.s * Math.min(1, halfW / 4.4));
     db.rotation.y = -.6 + el * .28 + m.x * 1.1 + S.spin;
-    db.rotation.x = .32 + m.y * .7 + Math.sin(el * .7) * .06;
+    db.rotation.x = .32 + (S.mobile ? 0 : m.y * .7 + Math.sin(el * .7) * .06);
     db.rotation.z = .18 + Math.sin(el * .5) * .05;
     rimA.position.x = -4 + Math.sin(el * .6) * 1.5;
     const p = pg.attributes.position.array;
