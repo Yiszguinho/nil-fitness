@@ -223,7 +223,7 @@
   .hscroll .pin{height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;gap:44px}
   .htrack{display:flex;gap:26px;padding:0 24px 0 max(24px,calc((100vw - 1280px)/2 + 24px));width:max-content;will-change:transform}
   .hcard{position:relative;width:min(400px,74vw);height:min(520px,58vh);border-radius:26px;overflow:hidden;flex:none;background:var(--ink-3)}
-  .hcard img{position:absolute;top:0;left:-15%;width:130%;height:100%;object-fit:cover;object-position:center 22%;will-change:transform}
+  .hcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%}
   .hcard figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px;background:linear-gradient(transparent,rgba(0,0,0,.88));font-family:"Barlow Condensed";font-weight:800;text-transform:uppercase;font-size:1.7rem;line-height:1}
   .hcard figcaption small{display:block;margin-top:6px;font-family:Barlow;font-weight:500;text-transform:none;font-size:.95rem;color:#d4d4d8}
   .hcard .n{position:absolute;top:20px;left:22px;font-family:"Barlow Condensed";font-weight:700;letter-spacing:2px;font-size:.9rem;color:#fff;background:rgba(0,0,0,.4);padding:4px 10px;border-radius:999px;backdrop-filter:blur(6px)}
@@ -412,7 +412,7 @@
 
     <div class="bento">
       <div class="tile-w span-2 row-2 rv"><div class="tile photo tilt">
-        <img src="treino-2.webp" alt="Aluno treinando no aparelho" loading="lazy" style="object-position:center 28%">
+        <img src="salao.webp" alt="Salão de musculação da Nil Fitness com alunos treinando" loading="lazy" style="object-position:center 55%">
         <div class="cap"><h3>Estrutura boa</h3><p>Aparelhos e pesos livres para treinar do iniciante ao avançado.</p></div>
       </div></div>
       <div class="tile-w rv"><div class="tile red tilt"><div class="big">4,6</div><p>de 5 no Google, com 28 avaliações de quem treina aqui.</p></div></div>
@@ -773,8 +773,6 @@ document.querySelectorAll('.manifesto .words').forEach((p) => {
     const dist = () => track.scrollWidth - innerWidth + 48;
     const h = gsap.to(track, { x: () => -dist(), ease: 'none',
       scrollTrigger: { trigger: '.hscroll', start: 'top top', end: () => '+=' + dist(), pin: '.hscroll .pin', scrub: 1, invalidateOnRefresh: true, refreshPriority: 1 } });
-    gsap.utils.toArray('.hcard img').forEach((img) => gsap.fromTo(img, { xPercent: -10 }, { xPercent: 10, ease: 'none',
-      scrollTrigger: { trigger: img.parentElement, containerAnimation: h, start: 'left right', end: 'right left', scrub: true } }));
     gsap.utils.toArray('.hcard').forEach((c) => gsap.from(c, { rotationY: -30, scale: .82, opacity: .25, transformPerspective: 1200, ease: 'none',
       scrollTrigger: { trigger: c, containerAnimation: h, start: 'left right', end: 'left 55%', scrub: true } }));
   });
